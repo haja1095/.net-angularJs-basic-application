@@ -1,0 +1,45 @@
+﻿<h2>
+    <button type="button" class="btn btn-danger"  ng-click="showalert()"><span class="glyphicon glyphicon-chevron-left"></span></button>
+    <span ng-show="(department.Id == '0')">New Department</span>
+    <span ng-hide="(department.Id =='0')">Edit {{department.DepartmentName1}} Details</span>
+ </h2>
+<form name="departmentForm" novalidate>
+    <div class="panel panel-default">
+        <div class="panel-heading">Basic Details</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{ 'has-error' : departmentForm.departmentForm_DepartmentName.$touched && departmentForm.departmentForm_DepartmentName.$invalid }">
+                        <label class="required" for="departmentForm_DepartmentName">Department Name</label>
+                        <input type="text" class="form-control" id="departmentForm_DepartmentName" name="departmentForm_DepartmentName" placeholder="Enter Department Name" ng-model="department.DepartmentName" ng-pattern="/^[a-zA-Z\s]*$/" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{'has-error': department.Company1 == ''}">
+                        <label class="required" for="departmentForm_Company">Company Name</label>
+                        <select ng-change="showNewCompany()"  class="form-control selectpicker show-tick" data-live-search="true" multiple id="departmentForm_Company" ng-model="department.Company1" toggle-dropdown name="departmentForm_Company" required>
+                            <option value="" disabled>Select</option>
+                            <option ng-repeat="company in companys" value="{{company.Code}}">{{company.CompanyName}}</option>
+                            <!--<optgroup label="">
+                                <option value="_">New Company</option>
+                            </optgroup>-->
+                        </select>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="!departmentForm.$valid">
+        <div class="col-md-4"></div>
+        <div class="text-center alert alert-info col-md-4 col-centered">
+            <strong>Must Fill all (*) fields.</strong>
+        </div>
+    </div>
+    <div class="form-group text-center">
+        <button type="button" ng-click="reset()" id="departmentForm_ResetBtn" class="btn btn-info" ng-hide="department.Id=='0' || department.Id == ''">Reset</button>
+        <button type="button" ng-disabled="!departmentForm.$valid" ng-click="save(); departmentForm.$setPristine()" id="departmentForm_SaveBtn" class="btn btn-success">Save</button>
+        <button type="button" ng-click="clear()" id="departmentForm_ClearBtn" class="btn btn-warning" ng-show="department.Id =='' || department.Id =='0'">Clear</button>
+    </div>
+</form>

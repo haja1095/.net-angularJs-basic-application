@@ -1,0 +1,26 @@
+﻿
+<h2>
+    Company <button type="button" class="btn btn-primary btn-sm" ui-sref="app.companyForm({Code:'0'})"><span class="glyphicon glyphicon-plus"></span>Add</button>
+</h2>
+<table id="companyTbl" class="table" style="width:100%">
+    <thead>
+        <tr>
+            <th>Company Name</th>
+            <!--<th><center>Logo</center></th>-->
+            <th>Mobile No</th>
+            <th>Email</th>
+            <th>#</th>
+            <th>#</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="company in companys">
+            <td>{{company.CompanyName}}</td>
+            <!--<td><center>{{company.Logo}}<img data-toggle="popover" title="{{company.CompanyName}}" data-content='<img src="{{setLogo(company)}}" style="height:130px;" />' ng-src="{{setLogo(company)}}" style="height:30px;" /></center></td>-->
+            <td>{{company.MobileNo}}</td>
+            <td>{{company.Email}}</td>
+            <td><button type="button" ui-sref="app.companyForm({Code:'{{company.Code}}'})" class="btn btn-sm btn-warning "><span class="glyphicon glyphicon-pencil"></span>Edit</button></td>
+            <td><button type="button" class="btn btn-danger btn-sm" ng-click="showDelete(company)"><span class="glyphicon glyphicon-remove"></span>Delete</button></td>
+        </tr>
+    </tbody>
+</table>

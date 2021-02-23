@@ -1,0 +1,148 @@
+﻿
+<h2>
+    <button type="button" class="btn btn-danger" ng-click="showalert()"><span class="glyphicon glyphicon-chevron-left"></span></button>
+    <span ng-show="(product.Id == '0')">New Product</span>
+    <span ng-hide="(product.Id == '0')">Edit {{product.ProductName1}} Details</span>
+    
+</h2>
+<form name="productForm" novalidate>
+    <div class="panel panel-default">
+        <div class="panel-heading">Basic Details</div>
+        <div class="panel-body">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" ng-class="{ 'has-error' : productForm.productForm_ProductName.$touched && productForm.productForm_ProductName.$invalid }">
+                                <label  class="required" for="productForm_Product Name">Product Name</label>
+                                <input type="text" class="form-control" id="productForm_ProductName" name="productForm_ProductName" ng-model="product.ProductName" placeholder="Enter Product Name" ng-pattern="/^[a-zA-Z\s]*$/" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group" ng-class="{ 'has-error' : productForm.productForm_Rate.$touched && productForm.productForm_Rate.$invalid }">
+                                <label class="required" for="productForm_Rate">Rate</label>
+                                <input type="text" class="form-control" id="productForm_Rate" name="productForm_Rate" ng-model="product.Rate" placeholder="Enter Rate" ng-pattern="/^[0-9]{1,6}$/" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="productForm_Barcode">Barcode</label>
+                                <div class="pull-right switch-success switch-mini" toggle-switch ng-model="product.Barcode" knob-label="" on-label="On" off-label="Off"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" ng-class="{'has-error': product.Company1 == ''}">
+                                <label class="required" for="productForm_Company">Company Name</label>
+                                <select class="form-control selectpicker show-tick" data-live-search="true" multiple id="productForm_Company" ng-model="product.Company1" toggle-dropdown name="productForm_Company" required>
+                                    <option value="" disabled>Select</option>
+                                    <option ng-repeat="company in companys" value="{{company.Code}}">{{company.CompanyName}}</option>
+                                </select>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group" ng-class="{'has-error': product.Department == ''}">
+                                <label class="required" for="productForm_Department">Department Name</label>
+                                <select ng-change="showNewDepartment()" class="form-control selectpicker show-tick" data-live-search="true" id="productForm_Department" ng-model="product.Department" toggle-dropdown name="productForm_Department" required>
+                                    <option value="" disabled>Select</option>
+                                    <option ng-repeat="department in departments" value="{{department.Id}}">{{department.DepartmentName}}</option>
+                                    <optgroup label="">
+                                        <option value="_">New Department</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" ng-class="{'has-error': product.ProductGroup == ''}">
+                                <label class="required" for="productForm_ProductGroup">Product Group</label>
+                                <select  ng-change="showNewProductGroup()"class="form-control selectpicker show-tick" data-live-search="true" id="productForm_ProductGroup" ng-model="product.ProductGroup" toggle-dropdown name="productForm_ProductGroup" required>
+                                    <option value="" disabled>Select</option>
+                                    <option ng-repeat="productgroup in productgroups" value="{{productgroup.Id}}">{{productgroup.ProductGroupName}}</option>
+                                    <optgroup label="">
+                                        <option value="_">New ProductGroup</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Tax Details
+            <div class="pull-right row">
+                <div class="col-md-6">
+                    Taxable
+                </div>
+                <div class="col-md-6">
+                    <div class="pull-right switch-success switch-mini" toggle-switch ng-model="product.Taxable" knob-label="" on-label="On" off-label="Off"></div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="productForm_HSNCode">HSN Code</label>
+                        <input type="text" class="form-control" ng-disabled="!product.Taxable" id="productForm_HSNCode" ng-model="product.HSNCode" placeholder="Enter HSN Code">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="productForm_SGST">SGST</label>
+                        <input type="text" class="form-control" ng-disabled="!product.Taxable" id="productForm_SGST" ng-model="product.SGST" placeholder="Enter SGST">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="productForm_CGST">CGST</label>
+                        <input type="text" class="form-control" ng-disabled="!product.Taxable" id="productForm_CGST" ng-model="product.CGST" placeholder="Enter CGST">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="productForm_IGST">IGST</label>
+                        <input type="text" class="form-control" ng-disabled="!product.Taxable" id="productForm_IGST" ng-model="product.IGST" placeholder="Enter IGST">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="productForm_VAT">VAT</label>
+                        <input type="text" class="form-control" ng-disabled="!product.Taxable" id="productForm_VAT" ng-model="product.VAT" placeholder="Enter VAT">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="((!productForm.$valid) || ( product.Company1 == '')||( product.Department == '')||(product.ProductGroup == ''))">
+        <div class="col-md-4"></div>
+        <div class="text-center alert alert-info col-md-4 col-centered">
+            <strong>Fill all required(*) fields.</strong>
+        </div>
+    </div>
+
+    <div class="form-group text-center">
+        <button type="button" ng-hide="product.Id == '0' || product.Id == ''" ng-click="reset()" id="productForm_ResetBtn" class="btn btn-info">Reset</button>
+        <button type="button" ng-click="save()"  ng-disabled="((!productForm.$valid) || ( product.Company1 == '')||( product.Department == '')||(product.ProductGroup == ''))" id="productForm_SaveBtn" class="btn btn-success">Save</button>
+        <button type="button" ng-show="product.Id == '0' || product.Id ==''" ng-click="clear()" id="productForm_ClearBtn" class="btn btn-warning">Clear</button>
+    </div>
+</form>

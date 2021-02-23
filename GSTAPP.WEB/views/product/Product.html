@@ -1,0 +1,25 @@
+﻿
+        <h2>
+           Product <button type="button" class="btn btn-primary btn-sm" ui-sref="app.productForm({Code:'0'})"><span class="glyphicon glyphicon-plus"></span>Add</button>
+        </h2>
+        <table id="productTbl" class="table" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Rate</th>
+                   
+                    <th>#</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="product in products">
+                    <td>{{product.ProductName}}</td>
+                    <td>{{product.Rate}}</td>
+                                      <td><button type="button" ui-sref="app.productForm({Code:'{{product.Id}}'})" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span>Edit</button></td>
+                    <td><button type="button" class="btn btn-danger btn-sm" ng-click="showDelete(product)"><span class="glyphicon glyphicon-remove"></span>Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    
+

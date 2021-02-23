@@ -1,0 +1,274 @@
+﻿
+
+<h2>
+    <button type="button" class="btn btn-danger" ng-click="showalert()"><span class="glyphicon glyphicon-chevron-left"></span></button>
+    <span ng-show="(purchaseorder.Id == '0')">New Purchase Order</span>
+    <span ng-hide="(purchaseorder.Id == '0')">Edit {{purchaseorder.PO1}} Details</span>
+    <button ng-hide="(purchaseorder.Id == '0')" type="button" class="btn btn-primary " ng-click="POPDF()"><span class="glyphicon glyphicon-list-alt"></span></button>
+</h2>
+<form name="purchaseorderForm" novalidate>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group" ng-class="{'has-error': purchaseorderForm.purchaseorderForm_ReferenceNO.$invalid && purchaseorderForm.purchaseorderForm_ReferenceNO.$touched}">
+                <label class="required" for="purchaseorderForm_ReferenceNO">Reference NO</label>
+                <input type="text" class="form-control" id="purchaseorderForm_ReferenceNO" name="purchaseorderForm_ReferenceNO" ng-model="purchaseorder.ReferenceNO" placeholder="Enter Reference NO" required ng-pattern="/^[0-9, ]{1,60}$/">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group" ng-class="{'has-error': purchaseorderForm.purchaseorderForm_PODate.$invalid && purchaseorderForm.purchaseorderForm_PODate.$touched}">
+                <label class="required" for="purchaseorderForm_PODate">PO Date</label>
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="purchaseorder.PODate" is-open="purchaseorder.opened1" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" name="purchaseorderForm_PODate" />
+                    <span ng-click="open1(purchaseorder)" class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group" ng-class="{'has-error': purchaseorder.CompanyCode == ''}">
+                <label class="required" for="purchaseorderForm_Company">Company</label>
+                <select class="form-control selectpicker show-tick" data-live-search="true" id="purchaseorderForm_Company" ng-model="purchaseorder.CompanyCode" ng-change="setComAddress()" toggle-dropdown>
+                    <option value="" disabled>Select</option>
+                    <option ng-repeat="company in companys" value="{{company.Code}}">{{company.CompanyName}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group" ng-class="{'has-error':  purchaseorder.SupplierCode == ''}">
+                <label class="required" for="purchaseorderForm_Supplier">Supplier</label>
+                <select class="form-control selectpicker show-tick" data-live-search="true" id="purchaseorderForm_Supplier" ng-model="purchaseorder.SupplierCode" ng-change="setSupAddress();showNewSupplier();" toggle-dropdown>
+                    <option value="" disabled>Select</option>
+                    <option ng-repeat="supplier in suppliers" value="{{supplier.Code}}">{{supplier.CompanyName}}</option>
+                    <optgroup label="">
+                        <option value="_">New Supplier</option>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="col-md-3">
+            <div class="form-group" ng-class="{'has-error': purchaseorder.TermsId == ''}">
+                <label class="required" for="purchaseorderForm_Terms">Terms</label>
+                <select ng-change="showNewTerms()" class="form-control selectpicker show-tick" data-live-search="true" id="purchaseorderForm_Terms" ng-model="purchaseorder.TermsId" toggle-dropdown>
+                    <option value="" disabled>Select</option>
+                    <option ng-repeat="terms in termss" value="{{terms.Code}}">{{terms.TermsName}}</option>
+                    <optgroup label="">
+                        <option value="_">New Terms</option>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="col-md-3">
+            <div class="form-group" ng-class="{'has-error': purchaseorderForm.purchaseorderForm_DueDate.$invalid && purchaseorderForm.purchaseorderForm_DueDate.$touched}">
+                <label class="required" for="purchaseorderForm_DueDate">Due Date</label>
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="purchaseorder.DueDate" is-open="purchaseorder.opened2" datepicker-options="dateOptions" name="purchaseorderForm_DueDate" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                    <span ng-click="open2(purchaseorder)" class="input-group-addon">
+                        <span ng-click="open2(purchaseorder)" class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="purchaseorderForm_ShippingDate">Shipping Date</label>
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="purchaseorder.ShippingDate" is-open="purchaseorder.opened3" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                    <span ng-click="open3(purchaseorder)" class="input-group-addon">
+                        <span ng-click="open3(purchaseorder)" class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    
+
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="purchaseorderForm_SupplierAddress">Supplier Address</label>
+                    <input type="text" class="form-control" id="purchaseorderForm_SupplierAddress" ng-model="purchaseorder.SupplierAddress" name="purchaseorderForm_SupplierAddress" placeholder="Enter Supplier Address">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="purchaseorderForm_ShippingAddress">Shipping Address</label>
+                    <input type="text" class="form-control" id="purchaseorderForm_ShippingAddress" ng-model="purchaseorder.ShippingAddress" name="purchaseorderForm_ShippingAddress" placeholder="Enter Shipping Address">
+                </div>
+            </div>
+        </div>
+           <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+
+
+                    <table class="myCss" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th style="width:4%;">
+                                    No
+                                </th>
+                                <th style="width:13%;">
+                                    Product
+                                </th>
+                                <th style="width:6%;">
+                                    kg/m/l
+                                </th>
+                                <th style="width:6%;">
+                                    Units / Pieces
+                                </th>
+                                <th style="width:12%;">
+                                    Item Type
+                                </th>
+                                <th style="width:10%;">
+                                    Rate
+                                </th>
+                                <th style="width:11%;">
+                                    Discount
+                                </th>
+                                <th style="width:5%;">
+                                    Tax
+                                </th>
+                                <th style="width:13%;">
+                                    Amount
+                                </th>
+                                <th style="width:14%;">
+                                    Date
+                                </th>
+                                <th style="width:6%;">
+                                    #
+                                </th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+
+                            <tr ng-repeat="item in purchaseorder.PurchaseOrderItems">
+                                <td>{{purchaseorder.PurchaseOrderItems.indexOf(item)+1}}</td>
+                                <td ng-class="{'has-error': item.ProductId == ''}">
+                                    <select class="form-control selectpicker show-tick productCS" data-live-search="true" ng-model="item.ProductId" ng-change="setrate(purchaseorder.PurchaseOrderItems.indexOf(item))" toggle-dropdown>
+                                        <option value="" disabled>Select</option>
+                                        <option ng-repeat="product in products" value="{{product.Id}}">{{product.ProductName}}</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" name="WeightorLength" ng-model="item.WeightorLength" ng-keypress="setAllIntTxtBox($event)" />
+                                </td>
+                                <td style="width: 60px;" ng-class="{'has-error': purchaseorderForm.UnitOrPieces{{purchaseorder.PurchaseOrderItems.indexOf(item)+1}}.$invalid }">
+                                    <input class="form-control" type="text" name="UnitOrPieces{{purchaseorder.PurchaseOrderItems.indexOf(item)+1}}" ng-model="item.UnitsOrPieces" ng-keypress="setAllIntTxtBox($event)" ng-keyup="setAmout(item)" required />
+                                </td>
+                                <td ng-class="{'has-error': item.ItemTypeId == ''}">
+                                    <select ng-change="showNewItemType(item)" class="form-control selectpicker show-tick itemTypeCS" data-live-search="true" ng-model="item.ItemTypeId" toggle-dropdown>
+                                        <option value="" disabled>Select</option>
+                                        <option ng-repeat="itemtype in itemtypes" value="{{itemtype.Id}}">{{itemtype.ItemTypeName}}</option>
+                                        <optgroup label="">
+                                            <option value="_">New Item Type</option>
+                                        </optgroup>
+                                    </select>
+                                </td>
+                                <td style="width: 60px;" ng-class="{'has-error': purchaseorderForm.Rate{{purchaseorder.PurchaseOrderItems.indexOf(item)+1}}.$invalid }">
+                                    <input class="form-control text-right" type="text" name="Rate{{purchaseorder.PurchaseOrderItems.indexOf(item)+1}}" ng-Model="item.Rate" ng-keyup="setAmout(item)" ng-keypress="setAllIntTxtBox($event)" required />
+                                </td>
+
+                                <td>
+                                    <div class="input-group">
+                                        <input class="form-control" type="text" name="Discount" ng-Model="item.Discount" ng-keyup="setAmout(item)" ng-keypress="setAllIntTxtBox($event)" />
+                                        <span class="input-group-addon"><input ng-change="setAmout(item)" ng-model="item.IsPercentage" type="checkbox"> %</span>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <input class="form-control" type="text" disabled="disabled" name="Tax" ng-Model="item.Tax" />
+                                </td>
+                                <td>
+                                    <input class="form-control text-right" type="text" disabled="disabled" name="TaxAmount" ng-Model="item.TaxAmount" />
+                                </td>
+                                <td>
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input type='text' class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="item.Date" is-open="item.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                        <span ng-click="open4(item)" class="input-group-addon">
+                                            <span ng-click="open4(item)" class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <button type="button" class="btn btn-success btn-xs" ng-click="createrow()" ng-hide="purchaseorder.PurchaseOrderItems.length!=purchaseorder.PurchaseOrderItems.indexOf(item)+1">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-xs" ng-click="delrow(purchaseorder.PurchaseOrderItems.indexOf(item))" ng-hide="purchaseorder.PurchaseOrderItems.length<=1">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group" ng-class="{'has-error': purchaseorderForm.purchaseorderForm_Discount.$invalid && purchaseorderForm.purchaseorderForm_Discount.$touched}">
+                <label for="purchaseorderForm_Discount">Discount</label>
+                <div class="input-group">
+                    <input ng-pattern="/^[0-9.]{1,15}$/" type="text" class="form-control" id="purchaseorderForm_Discount" name="purchaseorderForm_Discount" ng-model="purchaseorder.Discount" ng-keyup="setTotalAmt()" placeholder="Enter Discount">
+                    <span class="input-group-addon"><input ng-change="setTotalAmt()" ng-model="purchaseorder.IsPercentage" type="checkbox"> %</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+
+            <div ng-show="purchaseorder.IsPercentage" class="row">
+                <div class="col-md-3 pull-right">
+                    <div class="form-group">
+                        <label for="purchaseorderForm_DiscountAmount">Discount Amount</label>
+                        <input type="text" class="form-control text-right" disabled="disabled" id="purchaseorderForm_DiscountAmount" name="purchaseorderForm_DiscountAmount" ng-model="purchaseorder.DiscountAmount">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 pull-right">
+                    <div class="form-group">
+                        <label for="purchaseorderForm_TotalAmount">Total Amount</label>
+                        <input type="text" class="form-control text-right" disabled="disabled" id="purchaseorderForm_TotalAmount" name="purchaseorderForm_TotalAmount" ng-model="purchaseorder.TotalAmount">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            <div class="col-md-6">
+                <div class="row" >
+                    <div class="col-md-6 ">
+                        <div class="form-group" ng-class="{'has-error': purchaseorderForm.purchaseorderForm_Message.$invalid && purchaseorderForm.purchaseorderForm_Message.$touched}">
+                            <label for="purchaseorderForm_Message">Message</label>
+                            <input ng-pattern="/^[a-zA-Z0-9 ,. ]{1,50}$/" type="text" class="form-control" id="purchaseorderForm_Message" name="purchaseorderForm_Message" ng-model="purchaseorder.Message" placeholder="Enter Message">
+                        </div>
+                    </div>
+                </div>
+            </div>
+  
+            <div class="row" ng-show="setvalidform()">
+                <div class="col-md-4"></div>
+                <div class="text-center alert alert-info col-md-4 col-centered">
+                    <strong>Fill all required fields(*).</strong>
+                </div>
+            </div>
+     
+        <div class="form-group text-center">
+            <button type="button" ng-click="reset()" id="purchaseorderForm_ResetBtn" class="btn btn-info" ng-hide="purchaseorder.Id =='0' || purchaseorder.Id == ''">Reset</button>
+            <button type="button" ng-disabled="setvalidform()" ng-click="save()" id="purchaseorderForm_SaveBtn" class="btn btn-success">Save</button>
+            <button type="button" ng-click="clear()" id="purchaseorderForm_ClearBtn" class="btn btn-warning" ng-show="purchaseorder.Id =='' || purchaseorder.Id =='0'">Clear</button>
+        </div>
+</form>
+
+

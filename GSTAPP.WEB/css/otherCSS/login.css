@@ -1,0 +1,104 @@
+﻿.main-section {
+    background: url(../../img/loginBc1.png) no-repeat;
+    background-size: cover;
+    bottom: 0px;
+    top: 0px;
+    margin: 0px;
+    position: absolute;
+    width: 100%;
+    color: #ffffff;
+    overflow: auto;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.main-section-registration {
+    background: url(../../img/loginBc3.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.main-section-registrationsuccess {
+    background: url(../../img/computer.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.main-section-validation {
+    background: url(../../img/loginBc5.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.main-section-verification {
+    background: url(../../img/loginBc5.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.main-section-EmailVerificationSuccess {
+    background: url(../../img/loginBc5.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.main-section-resendsuccess {
+    background: url(../../img/loginBc5.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.main-section-resend {
+    background: url(../../img/loginBc5.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.user-login-header, .login-image-main {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+    .user-login-header h1 {
+        font-size: 45px;
+        color: #fff;
+    }
+
+    .user-login-header p, .last-part p {
+        color: #000;
+    }
+
+    .user-login-header span {
+        color: #fff;
+        font-weight: 600;
+    }
+
+.login-image-main {
+    padding: 34px;
+    background-color: rgba(255, 255, 255, 0.55);
+    border-radius: 5px;
+    box-shadow: 0 0 5px 0 #fff;
+}
+
+.user-image-section img {
+    background-color: #a0cee8;
+    padding: 30px;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+}
+
+.user-login-box {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.last-part {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

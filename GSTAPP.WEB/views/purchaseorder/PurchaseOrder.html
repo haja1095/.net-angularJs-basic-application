@@ -1,0 +1,31 @@
+﻿
+        <h2>
+            Purchase Order <button type="button" class="btn btn-primary btn-sm" ui-sref="app.purchaseorderForm({Code:'0'})"><span class="glyphicon glyphicon-plus"></span>Add</button>
+        </h2>
+
+    
+        <table id="purchaseorderTbl" class="table"  style="width:100%">
+            <thead>
+                <tr>
+                    
+                    <th>Company Code</th>
+                    <th>Supplier Code</th>
+                    <th>Shipping Address</th>
+                    <th>Terms</th>
+                    <th>PO</th>
+                    <th>#</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="purchaseorder in purchaseorders">
+                    <td>{{purchaseorder.CompanyCode}}</td>
+                    <td>{{purchaseorder.SupplierCode}}</td>
+                    <td>{{purchaseorder.ShippingAddress}}</td>
+                    <td>{{purchaseorder.TermsId}}</td>
+                    <td>{{purchaseorder.PO}}</td>
+                    <td><button type="button" ui-sref="app.purchaseorderForm({Code:'{{purchaseorder.Id}}'})" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span>Edit</button></td>
+                    <td><button type="button" class="btn btn-danger btn-sm" ng-click="showDelete(purchaseorder)"><span class="glyphicon glyphicon-remove"></span>Delete</button></td>
+                </tr>
+            </tbody>
+        </table>

@@ -1,0 +1,24 @@
+﻿
+        <h2>
+            Customer <button type="button" class="btn btn-primary btn-sm" ui-sref="app.customerForm({Code:'0'})"><span class="glyphicon glyphicon-plus"></span>Add</button>
+        </h2>
+        <table id="customerTbl" class="table" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Company Name</th>
+                    <th>Contact Person</th>
+                    <th>Mobile No</th>
+                    <th>#</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="customer in customers">
+                    <td>{{customer.CompanyName}}</td>
+                    <td>{{customer.ContactPerson}}</td>
+                    <td>{{customer.MobileNo}}</td>  
+ <td><button type="button" ui-sref="app.customerForm({Code:'{{customer.Code}}'})" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span>Edit</button></td>
+                    <td><button type="button" class="btn btn-danger btn-sm" ng-click="showDelete(customer)"><span class="glyphicon glyphicon-remove" ></span>Delete</button></td>
+                </tr>
+            </tbody>
+        </table>

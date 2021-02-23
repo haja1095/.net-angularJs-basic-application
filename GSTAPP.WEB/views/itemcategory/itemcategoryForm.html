@@ -1,0 +1,45 @@
+﻿
+        <h2>
+            <button type="button" class="btn btn-danger" ng-click="showalert()"><span class="glyphicon glyphicon-chevron-left"></span></button> 
+            <span ng-show="(itemcategory.Id == '0')">New Item Category</span>
+            <span ng-hide="(itemcategory.Id == '0')">Edit {{itemcategory.ItemCategoryName1}} Details</span>             
+          </h2>
+        <form name="itemcategoryForm"> 
+    <div class="panel panel-default">
+        <div class="panel-heading">Basic Details</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group"  ng-class="{ 'has-error' : itemcategoryForm.itemcategoryForm_ItemCategoryName.$touched && itemcategoryForm.itemcategoryForm_ItemCategoryName.$invalid }">
+                        <label class="required" for="itemcategoryForm_ItemCategoryName">Item Category Name</label>
+                        <input type="text" class="form-control" id="itemcategoryForm_ItemCategoryName" name="itemcategoryForm_ItemCategoryName" ng-model="itemcategory.ItemCategoryName" placeholder="Enter Item Category Name" ng-pattern="/^[a-zA-Z\s]*$/" required>
+                    </div>
+            </div>
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{'has-error': itemcategory.Company1 == ''}">
+                        <label class="required" for="itemcategoryForm_Company">Company Name</label>
+                        <select class="form-control selectpicker show-tick" data-live-search="true" multiple id="itemcategoryForm_Company" ng-model="itemcategory.Company1" toggle-dropdown name="itemcategoryForm_Company" required>
+                            <option value="" disabled>Select</option>
+                            <option ng-repeat="company in companys" value="{{company.Code}}">{{company.CompanyName}}</option>
+                        </select>
+
+                    </div>
+
+                </div>
+        </div>
+    </div>
+ </div>
+            <div class="row" ng-show="!itemcategoryForm.$valid">
+                <div class="col-md-4"></div>
+                <div class="text-center alert alert-info col-md-4 col-centered">
+                    <strong>Fill all required(*) fields.</strong>
+                </div>
+            </div>
+             
+    <div class="form-group text-center">
+        <button type="button" ng-click="reset()" id="itemcategoryForm_ResetBtn" class="btn btn-info" ng-hide="itemcategory.Id =='0' || itemcategory.Id == ''">Reset</button>
+        <button type="button" ng-disabled="!itemcategoryForm.$valid" ng-click="save()" id="itemcategoryForm_SaveBtn" class="btn btn-success">Save</button>
+        <button type="button" ng-click="clear()" id="itemcategoryForm_ClearBtn" class="btn btn-warning" ng-show="itemcategory.Id =='' || itemcategory.Id =='0'">Clear</button>
+    </div>
+</form>
+        

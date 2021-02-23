@@ -1,0 +1,219 @@
+﻿<dialog-Form></dialog-Form>
+<div class="container-fluid">
+    <h2>
+        <span>New Customer</span>
+    </h2>
+    <form name="customerForm" novalidate>
+        <div class="panel panel-default">
+            <div class="panel-heading">Basic Details</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{'has-error': customerForm.customerForm_CompanyName.$invalid && customerForm.customerForm_CompanyName.$touched}">
+                            <label class="required" for="customerForm_CompanyName">Company Name</label>
+                            <input type="text" class="form-control" id="customerForm_CompanyName" ng-pattern="/^[a-zA-Z. 0-9]{1,60}$/" required name="customerForm_CompanyName" ng-model="customer.CompanyName" placeholder="Enter Company Name">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="customerForm_GSTIN">GSTIN</label>
+                            <input type="text" class="form-control" id="customerForm_GSTIN" ng-model="customer.GSTIN" placeholder="Enter GSTIN" ng-pattern="/^[a-zA-Z0-9]{1,60}$/">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Communication Details</div>
+            <div class="panel-body">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{'has-error': customerForm.customerForm_Address.$invalid && customerForm.customerForm_Address.$touched}">
+                                    <label class="required" for="customerForm_Address">Address</label>
+                                    <textarea input type="text" class="form-control" id="customerForm_Address" ng-model="customer.Address" placeholder="Enter Address" required name="customerForm_Address"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{'has-error': customerForm.customerForm_ContactPerson.$invalid && customerForm.customerForm_ContactPerson.$touched}">
+                                    <label class="required" for="customerForm_ContactPerson">Contact Person</label>
+                                    <input type="text" class="form-control" id="customerForm_ContactPerson" name="customerForm_ContactPerson" ng-model="customer.ContactPerson" placeholder="Enter Contact Person" required ng-pattern="/^[a-zA-Z]*$/">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{'has-error': customerForm.customerForm_Place.$invalid && customerForm.customerForm_Place.$touched}">
+                                    <label class="required" for="customerForm_Place">Place</label>
+                                    <input type="text" class="form-control" id="customerForm_Place" ng-model="customer.Place" placeholder="Enter Place" required name="customerForm_Place" ng-pattern="/^[a-zA-Z]*$/">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{'has-error': customer.State == ''}">
+                                    <label class="required" for="customerForm_State">State</label>
+                                    <select class="form-control selectpicker show-tick" data-live-search="true" id="customerForm_State" ng-model="customer.State" placeholder="Enter State" name="customerForm_State">
+                                        <option value="" disabled>Select</option>
+                                        <option ng-repeat="state in states" value="{{state.MiscellaneousKey}}"> {{state.MiscellaneousKey}} </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{'has-error': customerForm.customerForm_PostalCode.$invalid && customerForm.customerForm_PostalCode.$touched}">
+                                    <label class="required" for="customerForm_PostalCode">Postal Code</label>
+                                    <input type="text" class="form-control" id="customerForm_PostalCode" name="customerForm_PostalCode" ng-model="customer.PostalCode" placeholder="Enter Postal Code" required ng-pattern="/^[0-9]{1,6}$/">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{'has-error': customerForm.customerForm_PhoneNo.$invalid && customerForm.customerForm_PhoneNo.$touched}">
+                                    <label for="customerForm_PhoneNo"> Phone No</label>
+                                    <input type="text" class="form-control" id="customerForm_PhoneNo" name="customerForm_PhoneNo" ng-model="customer.PhoneNo" placeholder="Enter Phone No" ng-pattern="/^[0-9]{1,10}$/">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{'has-error': customerForm.customerForm_MobileNo.$invalid && customerForm.customerForm_MobileNo.$touched}">
+                                    <label class="required" for="customerForm_MobileNo">Mobile No</label>
+                                    <input type="text" class="form-control" id="customerForm_MobileNo" name="customerForm_MobileNo" ng-model="customer.MobileNo" placeholder="Enter Mobile No" required ng-pattern="/^[0-9, ]{1,60}$/">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{'has-error': customerForm.customerForm_WhatsAppNo.$invalid && customerForm.customerForm_WhatsAppNo.$touched}">
+                                    <label for="customerForm_WhatsAppNo">WhatsApp No</label>
+                                    <input type="text" class="form-control" id="customerForm_WhatsAppNo" name="customerForm_WhatsAppNo" ng-model="customer.WhatsAppNo" placeholder="Enter Mobile No" ng-pattern="/^[0-9]{1,10}$/">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{'has-error': customerForm.customerForm_Fax.$invalid && customerForm.customerForm_Fax.$touched}">
+                                    <label for="customerForm_Fax">Fax</label>
+                                    <input type="text" class="form-control" id="customerForm_Fax" name="customerForm_Fax" ng-model="customer.Fax" placeholder="Enter Fax" ng-pattern="/^[0-9]{1,11}$/">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{'has-error': customerForm.customerForm_Email.$invalid && customerForm.customerForm_Email.$touched}">
+                                    <label class="required" for="customerForm_Email">Email</label>
+                                    <input type="email" class="form-control" id="customerForm_Email" required name="customerForm_Email" ng-model="customer.Email" placeholder="Enter Email">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="customerForm_Website">Website</label>
+                                    <input type="text" class="form-control" id="customerForm_Website" ng-model="customer.WebSite" placeholder="Enter Website">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Bank Details</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{'has-error': customerForm.customerForm_BankName.$invalid && customerForm.customerForm_BankName.$touched}">
+                            <label for="customerForm_BankName">Bank Name</label>
+                            <input type="text" class="form-control" id="customerForm_BankName" name="customerForm_BankName" ng-model="customer.BankName" placeholder="Enter Bank Name" ng-pattern="/^[a-zA-Z. 0-9]{1,60}$/">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{'has-error': customerForm.customerForm_BranchName.$invalid && customerForm.customerForm_BranchName.$touched}">
+                            <label for="customerForm_BranchName">Branch Name</label>
+                            <input type="text" class="form-control" id="customerForm_BranchName" name="customerForm_BranchName" ng-model="customer.BranchName" placeholder="Enter Branch Name" ng-pattern="/^[a-zA-Z. 0-9]{1,60}$/">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{'has-error': customerForm.customerForm_IFSCCode.$invalid && customerForm.customerForm_IFSCCode.$touched}">
+                            <label for="customerForm_IFSCCode">IFSC Code</label>
+                            <input type="text" class="form-control" id="customerForm_IFSCCode" name="customerForm_IFSCCode" ng-model="customer.IFSCCode" placeholder="Enter IFSC Code" ng-pattern="/^[a-zA-Z. 0-9]{1,60}$/">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{'has-error': customerForm.customerForm_AccountNo.$invalid && customerForm.customerForm_AccountNo.$touched}">
+                            <label for="customerForm_AccountNo">Account No</label>
+                            <input type="text" class="form-control" id="customerForm_AccountNo" name="customerForm_AccountNo" ng-model="customer.AccountNo" placeholder="Enter Account No" ng-pattern="/^[0-9]{1,20}$/">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Other Details</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="customerForm_Description">Description</label>
+                            <textarea input type="text" class="form-control" id="customerForm_Description" ng-model="customer.Description" placeholder="Enter Description"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Shipping Address List</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="panel">
+                        <div class="panel panel-info myaddrpanel" ng-show="customer.ShippingAddress.length > 0" ng-repeat="item in customer.ShippingAddress">
+                            <div class="panel-heading myaddhead">
+                                <div class='input-group'>
+                                    <input type="text" class="form-control" id="customerForm_ShippingAddress" ng-model="item.ShippingAddressTitle" placeholder="Enter ShippingAddressTitle">
+                                    <span class="input-group-addon success addrsave" ng-click="sethidepanels($event)">
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    </span>
+                                    <span class="input-group-addon info addredit" ng-click="setshowpanel($event)">
+                                        Edit
+                                    </span>
+                                    <span class="input-group-addon danger" ng-click="customer.ShippingAddress.splice(customer.ShippingAddress.indexOf(item), 1)">
+                                        Delete
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="panel-body myaddbody form-group">
+                                <div>
+                                    <textarea input type="text" class="form-control" id="customerForm_ShippingAddress" ng-model="item.ShippingAddressValue" placeholder="Enter ShippingAddressValue"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-small btn-info pull-right" ng-click="add($event)"><span class="glyphicon glyphicon-plus"></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div ng-repeat="item in customer.ShippingAddress">-->
+        <!--<button  class="btn btn-small btn-warning " ></button>
+            <span class="input-group-addon" ng-click="remove(customer.ShippingAddress.indexOf(item))">
+                <span class="glyphicon glyphicon-remove"></span>Remove
+            </span>
+        -->
+        <!--</div>-->
+        <div class="row" ng-show="((!customerForm.$valid) || (customer.State == ''))">
+            <div class="col-md-4"></div>
+            <div class="text-center alert alert-info col-md-4 col-centered">
+                <strong>Must Fill all (*) fields.</strong>
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <button type="button" ng-click="reset()" id="customerForm_ResetBtn" class="btn btn-info" ng-hide="customer.Code=='0' || customer.Code == ''">Reset</button>
+            <button type="button" ng-disabled="((!customerForm.$valid) || (customer.State == ''))" ng-click="save()" id="customerForm_SaveBtn" class="btn btn-success">Save</button>
+            <button type="button" ng-click="clear()" id="customerForm_ClearBtn" class="btn btn-warning" ng-show="customer.Code =='' || customer.Code =='0'">Clear</button>
+        </div>
+
+    </form>
+</div>

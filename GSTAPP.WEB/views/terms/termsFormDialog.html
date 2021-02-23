@@ -1,0 +1,59 @@
+﻿<dialog-Form></dialog-Form>
+<div class="container-fluid">
+    <h2>
+        <span>New Terms</span>
+    </h2>
+    <form name="termsForm" novalidate>
+        <div class="panel panel-default">
+            <div class="panel-heading">Basic Details</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{ 'has-error' : termsForm.termsForm_TermsName.$touched && termsForm.termsForm_TermsName.$invalid }">
+                            <label class="required" for="termsForm_TermsName">Terms Name</label>
+                            <input type="text" class="form-control" id="termsForm_TermsName" name="termsForm_TermsName" ng-model="terms.TermsName" placeholder="Enter Terms Name" ng-pattern="/^[a-zA-Z. ]*$/" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{ 'has-error' : termsForm.termsForm_NumberOfDays.$touched && termsForm.termsForm_NumberOfDays.$invalid }">
+                            <label class="required" for="termsForm_NumberOfDays">Number Of Days</label>
+                            <input type="text" class="form-control" id="termsForm_NumberOfDays" name="termsForm_NumberOfDays" ng-model="terms.NumberOfDays" placeholder="Enter Number Of Days" ng-pattern="/^[0-9]{1,3}$/" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{'has-error': terms.Company1 == ''}">
+                            <label class="required" for="termsForm_Company">Company Name</label>
+                            <select class="form-control selectpicker show-tick" data-live-search="true" multiple id="termsForm_Company" ng-model="terms.Company1" toggle-dropdown name="termsForm_Company" required>
+                                <option value="" disabled>Select</option>
+                                <option ng-repeat="company in companys" value="{{company.Code}}">{{company.CompanyName}}</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="terms_Remarks">Remarks</label>
+                            <textarea input type="text" class="form-control" id="termsForm_Remarks" ng-model="terms.Remarks" placeholder="Enter Remarks"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="!termsForm.$valid">
+            <div class="col-md-4"></div>
+            <div class="text-center alert alert-info col-md-4 col-centered">
+                <strong>Fill all required(*) fields.</strong>
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <button type="button" ng-click="reset()" id="termsForm_ResetBtn" class="btn btn-info" ng-hide="terms.Code =='0' || terms.Code == ''">Reset</button>
+            <button type="button" ng-disabled="!termsForm.$valid" ng-click="save()" id="termsForm_SaveBtn" class="btn btn-success">Save</button>
+            <button type="button" ng-click="clear()" id="termsForm_ClearBtn" class="btn btn-warning" ng-show="terms.Code =='' || terms.Code =='0'">Clear</button>
+        </div>
+    </form>
+
+
+</div>

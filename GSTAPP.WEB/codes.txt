@@ -1,0 +1,39 @@
+
+            var table = $('#customerTable').DataTable({
+                data: data,
+                columns: [
+                    { data: 'Code' },
+                    { data: 'Name' },
+                    { data: 'PhoneNo' },
+                    { data: 'Email' },
+                    { data: 'PhoneNo' },
+                    { data: 'Email' },
+                    { data: null, className: "center", defaultContent: '<button type="button" editBtn class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span>Edit</button>' },
+                    { data: null, className: "center", defaultContent: '<button type="button" dltBtn class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Delete</button>' }
+                ],
+                select: true
+            });
+            $('[editBtn]').on('click', function () {
+                //if ($(this).parents('tr').hasClass('selected')) {
+                //    $(this).parents('tr').removeClass('selected');
+                //}
+                //else {
+                //    table.$('tr.selected').removeClass('selected');
+                //    $(this).parents('tr').addClass('selected');
+                //}
+            });
+            $('[dltBtn]').click(function () {
+
+            });
+            $('#customerTable tbody').on('click', 'tr', function () {
+                if ($(this).hasClass('selected')) {
+                    $(this).removeClass('selected');
+                }
+                else {
+                    table.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                }
+                scope.selected = algular.copy(table.rows('.selected').data());
+            });
+
+

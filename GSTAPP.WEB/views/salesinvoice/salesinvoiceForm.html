@@ -1,0 +1,325 @@
+﻿
+<h1>
+    <button type="button" class="btn btn-danger " ng-click="showalert()"><span class="glyphicon glyphicon-chevron-left"></span></button>
+    <span ng-show="(salesinvoice.Id == '0')">New Sales Invoice</span>
+    <span ng-hide="(salesinvoice.Id == '0')">Edit {{salesinvoice.InvoiceNo1}} Details</span>
+    <button ng-hide="(salesinvoice.Id == '0')" type="button" class="btn btn-primary " ng-click="SIPDF()"><span class="glyphicon glyphicon-list-alt"></span></button> 
+    </h1>
+<form name="salesinvoiceForm" novalidate>
+    <div ng-hide="!(salesinvoice.Id =='0' || salesinvoice.Id == '')" class="panel panel-default">
+        <div class="panel-heading">
+            From Sales Order
+            <div ng-change="setFromSO()" class="pull-right switch-success switch-mini" toggle-switch ng-model="switchStatus" knob-label="SO" on-label="From" off-label="Off"></div>
+        </div>
+        <div class="panel-body sodiv">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="salesinvoiceForm_SOCompany">Company(SO)</label>
+                        <select ng-disabled="setDis()" class="form-control selectpicker show-tick" data-live-search="true" id="salesinvoiceForm_SOCompany" ng-change="setSOs()" ng-model="SO.CompanyCode" toggle-dropdown>
+                            <option value="" disabled>Select</option>
+                            <option ng-repeat="company in companys" value="{{company.Code}}">{{company.CompanyName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="salesinvoiceForm_SOCustomer">Customer(SO)</label>
+                        <select ng-disabled="setDis()" class="form-control selectpicker show-tick" data-live-search="true" id="salesinvoiceForm_SOCustomer" ng-change="setSOs()" ng-model="SO.CustomerCode" toggle-dropdown>
+                            <option value="" disabled>Select</option>
+                            <option ng-repeat="customer in customers" value="{{customer.Code}}">{{customer.CompanyName}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="salesinvoiceForm_SODtl">SO</label>
+                        <select ng-disabled="setDis()" class="form-control selectpicker show-tick" data-live-search="true" id="salesinvoiceForm_SODtl" ng-model="salesinvoice.SO" toggle-dropdown ng-change="setAllData()">
+                            <option value="" disabled>Select</option>
+                            <option ng-repeat="SO in SOs" value="{{SO.SO}}">{{SO.SO}}</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group" ng-class="{'has-error': salesinvoiceForm.salesinvoiceForm_InvoiceNo.$invalid && salesinvoiceForm.salesinvoiceForm_InvoiceNo.$touched}">
+                <label class="required" for="salesinvoiceForm_InvoiceNo">Invoice No</label>
+                <input type="text" class="form-control" id="salesinvoiceForm_InvoiceNo" ng-required="true" name="salesinvoiceForm_InvoiceNo" ng-model="salesinvoice.InvoiceNo" placeholder="Enter InvoiceNo">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group" ng-class="{'has-error': salesinvoiceForm.salesinvoiceForm_InvoiceDate.$invalid && salesinvoiceForm.salesinvoiceForm_InvoiceDate.$touched}">
+                <label class="required" for="salesinvoiceForm_InvoiceDate">Invoice Date</label>
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="salesinvoice.InvoiceDate" is-open="salesinvoice.opened1" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" name="salesinvoiceForm_InvoiceDate" />
+                    <span class="input-group-addon" ng-click="open1(salesinvoice)">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group" ng-class="{'has-error': salesinvoice.CompanyCode == ''}">
+                <label class="required" for="salesinvoiceForm_Company">Company</label>
+                <select class="form-control selectpicker show-tick" data-live-search="true" id="salesinvoiceForm_Company" ng-change="setComAddress()" ng-model="salesinvoice.CompanyCode" toggle-dropdown ng-disabled="switchStatus">
+                    <option value="" disabled>Select</option>
+                    <option ng-repeat="company in companys" value="{{company.Code}}">{{company.CompanyName}}</option>
+                </select>
+            </div>
+           
+        </div>
+        <div class="col-md-6">
+            <div class="form-group" ng-class="{'has-error': salesinvoice.CustomerCode == ''}">
+                <label class="required" for="salesinvoiceForm_Customer">Customer</label>
+                <select  class="form-control selectpicker show-tick" data-live-search="true" id="salesinvoiceForm_Customer" ng-change="setCusAddress();showNewCustomer()" ng-model="salesinvoice.CustomerCode" toggle-dropdown ng-disabled="switchStatus">
+                    <option value="" disabled>Select</option>
+                    <option ng-repeat="customer in customers" value="{{customer.Code}}">{{customer.CompanyName}}</option>
+                    <optgroup label="">
+                        <option value="_">New Customer</option>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group" ng-class="{'has-error': salesinvoice.TermsId == ''}">
+                <label class="required" for="salesinvoiceForm_TermsId">Terms</label>
+                <select  ng-change="showNewTerms()" class="form-control selectpicker show-tick" data-live-search="true" id="salesinvoiceForm_TermsId" ng-model="salesinvoice.TermsId" toggle-dropdown ng-disabled="switchStatus">
+                    <option value="" disabled>Select</option>
+                    <option ng-repeat="terms in termss" value="{{terms.Code}}">{{terms.TermsName}}</option>
+                    <optgroup label="">
+                        <option value="_">New Terms</option>
+                    </optgroup>
+                </select>
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group" ng-class="{'has-error': salesinvoiceForm.salesinvoiceForm_DueDate.$invalid && salesinvoiceForm.salesinvoiceForm_DueDate.$touched}">
+                <label class="required" for="salesinvoiceForm_DueDate">Due Date</label>
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="salesinvoice.DueDate" is-open="salesinvoice.opened2" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-disabled="switchStatus" name="salesinvoiceForm_DueDate"/>
+                    <span class="input-group-addon" ng-click="open2(salesinvoice)">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group" ng-class="{'has-error': salesinvoiceForm.salesinvoiceForm_CompanyAddress.$invalid && salesinvoiceForm.salesinvoiceForm_CompanyAddress.$touched}">
+                <label class="required" for="salesinvoiceForm_CompanyAddress">Company Address</label>
+                <input type="text" class="form-control" id="salesinvoiceForm_CompanyAddress" name="salesinvoiceForm_CompanyAddress" ng-required="true" ng-model="salesinvoice.CompanyAddress" placeholder="Enter Company Address" ng-disabled="switchStatus">
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group" ng-class="{'has-error': salesinvoiceForm.salesinvoiceForm_CustomerAddress.$invalid && salesinvoiceForm.salesinvoiceForm_CustomerAddress.$touched}">
+                <label class="required" for="salesinvoiceForm_CustomerAddress">Customer Address</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="salesinvoiceForm_CustomerAddress" name="salesinvoiceForm_CustomerAddress" ng-required="true" ng-model="salesinvoice.CustomerAddress" placeholder="Enter Customer Address" ng-disabled="switchStatus">
+                    <span class="input-group-addon"><input type="checkbox" ng-model="cusAddresstoShippingAddress" ng-change="setShiAppDet()"> Shipping Address</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row" ng-hide="cusAddresstoShippingAddress">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="salesinvoiceForm_ShippingAddressSelect">Shipping Address Title</label>
+                <select class="form-control selectpicker show-tick" data-live-search="true" id="salesinvoiceForm_ShippingAddressSelect" ng-model="salesinvoice.ShippingAddressTitle" ng-change="setShippingAddress()" toggle-dropdown ng-disabled="switchStatus">
+                    <option value="" disabled>Select</option>
+                    <option ng-repeat="title in ArrAddrsttl" value="{{title}}">{{title}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="salesinvoiceForm_ShippingAddress">Shipping Address</label>
+                <input type="text" class="form-control" id="salesinvoiceForm_ShippingAddress" name="salesinvoiceForm_ShippingAddress" ng-model="salesinvoice.ShippingAddress" placeholder="Enter Shipping Address" ng-disabled="switchStatus">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <table class="myCss" style="width:100%;">
+                    <thead>
+                        <tr>
+                            <th style="width:4%;">
+                                No
+                            </th>
+                            <th style="width:13%;">
+                                Product
+                            </th>
+                            <th style="width:6%;">
+                                kg/m/l
+                            </th>
+                            <th style="width:6%;">
+                                Units / Pieces
+                            </th>
+                            <th style="width:12%;">
+                                Item Type
+                            </th>
+                            <th style="width:10%;">
+                                Rate
+                            </th>
+                            <th style="width:10%;">
+                                Discount
+                            </th>
+                            <th style="width:5%;">
+                                Tax
+                            </th>
+                            <th style="width:14%;">
+                                Amount
+                            </th>
+                            <th style="width:14%;">
+                                Date
+                            </th>
+                            <th style="width:6%;">
+                                #
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in salesinvoice.SalesInvoiceItems">
+                            <td>
+                                {{salesinvoice.SalesInvoiceItems.indexOf(item)+1}}
+                            </td>
+                            <td ng-class="{'has-error': item.ProductId == ''}">
+                                <select class="form-control selectpicker show-tick productCS" data-live-search="true" ng-model="item.ProductId" ng-change="setRate(salesinvoice.SalesInvoiceItems.indexOf(item));" toggle-dropdown>
+                                    <option value="" disabled>Select</option>
+                                    <option ng-repeat="product in products" value="{{product.Id}}">{{product.ProductName}}</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" name="WeightorLength" ng-model="item.WeightorLength" ng-keypress="setAllIntTxtBox($event)" />
+                            </td>
+                            <td style="width: 60px;" ng-class="{'has-error': salesinvoiceForm.UnitOrPieces{{salesinvoice.SalesInvoiceItems.indexOf(item)+1}}.$invalid }">
+                                <input class="form-control" type="text" name="UnitOrPieces{{salesinvoice.SalesInvoiceItems.indexOf(item)+1}}" ng-model="item.UnitsOrPieces" ng-keypress="setAllIntTxtBox($event)" ng-keyup="setAmout(item)" required />
+                            </td>
+                            <td ng-class="{'has-error': item.ItemTypeId == ''}">
+                                <select ng-change="showNewItemType(item)" class="form-control selectpicker show-tick itemTypeCS" data-live-search="true" ng-model="item.ItemTypeId" toggle-dropdown>
+                                    <option value="" disabled>Select</option>
+                                    <option ng-repeat="itemType in itemTypes" value="{{itemType.Id}}">{{itemType.ItemTypeName}}</option>
+                                    <optgroup label="">
+                                        <option value="_">New ItemType</option>
+                                    </optgroup>
+                                </select>
+                            </td>
+                            <td style="width: 60px;" ng-class="{'has-error': salesinvoiceForm.Rate{{salesinvoice.SalesInvoiceItems.indexOf(item)+1}}.$invalid }">
+                                <input class="form-control text-right" type="text" name="Rate{{salesinvoice.SalesInvoiceItems.indexOf(item)+1}}" ng-Model="item.Rate" ng-keyup="setAmout(item)" ng-keypress="setAllIntTxtBox($event)" required />
+                            </td>
+
+                            <td>
+                                <div class="input-group">
+                                    <input class="form-control" type="text" name="Discount" ng-Model="item.Discount" ng-keypress="setAllIntTxtBox($event)" ng-keyup="setAmout(item)" />
+                                    <span class="input-group-addon"><input type="checkbox" ng-change="setAmout(item)" ng-Model="item.IsPercentage"> %</span>
+                                </div>
+                            </td>
+
+                            <td>
+                                <input disabled="disabled" class="form-control" type="text" name="Tax" ng-model="item.Tax"/>
+                            </td>
+                            <td>
+                                <input disabled="disabled" class="form-control" type="text" name="TaxAmount" ng-model="item.TaxAmount"/>
+                            </td>
+                            <td>
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="item.Date" is-open="item.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
+                                    <span ng-click="open3(item)" class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-success btn-xs" ng-click="addRow()" ng-hide="salesinvoice.SalesInvoiceItems.length!=salesinvoice.SalesInvoiceItems.indexOf(item)+1">
+                                    <span class="glyphicon glyphicon-plus">
+
+                                    </span>
+                                </button>
+                                <button type="button" class="btn btn-danger btn-xs" ng-click="removeRow(salesinvoice.SalesInvoiceItems.indexOf(item))" ng-hide="salesinvoice.SalesInvoiceItems.length<=1">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group" ng-class="{'has-error': salesinvoiceForm.salesinvoiceForm_Discount.$invalid && salesinvoiceForm.salesinvoiceForm_Discount.$touched}">
+                <label for="salesinvoiceForm_Discount">Discount</label>
+                <div class="input-group">
+                    <input ng-pattern="/^[0-9.]{1,15}$/" type="text" class="form-control" id="salesinvoiceForm_Discount" name="salesinvoiceForm_Discount" ng-model="salesinvoice.Discount" ng-keyup="setTotalAmt()" placeholder="Enter Discount">
+                    <span class="input-group-addon"><input ng-change="setTotalAmt()" ng-model="salesinvoice.IsPercentage" type="checkbox"> %</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+
+            <div ng-show="salesinvoice.IsPercentage" class="row">
+                <div class="col-md-3 pull-right">
+                    <div class="form-group">
+                        <label for="salesinvoiceForm_DiscountAmount">Discount Amount</label>
+                        <input type="text" class="form-control text-right" disabled="disabled" id="salesinvoiceForm_DiscountAmount" name="salesinvoiceForm_DiscountAmount" ng-model="salesinvoice.DiscountAmount">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 pull-right">
+                    <div class="form-group">
+                        <label for="salesinvoiceForm_TotalAmount">Total Amount</label>
+                        <input type="text" class="form-control text-right" disabled="disabled" id="salesinvoiceForm_TotalAmount" name="salesinvoiceForm_TotalAmount" ng-model="salesinvoice.TotalAmount">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="form-group" ng-class="{'has-error': salesinvoiceForm.salesinvoiceForm_Message.$invalid && salesinvoiceForm.salesinvoiceForm_Message.$touched}">
+                        <label for="salesinvoiceForm_Message">Message</label>
+                        <input ng-pattern="/^[a-zA-Z0-9 ,. ]{1,50}$/" type="text" class="form-control" id="salesinvoiceForm_Message" name="salesinvoiceForm_Message" ng-model="salesinvoice.Message" placeholder="Enter Message">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="setvalidform()">
+        <div class="col-md-4"></div>
+        <div class="text-center alert alert-info col-md-4 col-centered">
+            <strong>Fill all required fields(*).</strong>
+        </div>
+    </div>
+
+    <div class="form-group text-center">
+        <button type="button" ng-click="reset()" id="salesForm_ResetBtn" class="btn btn-info" ng-hide="salesinvoice.Id =='0' || salesinvoice.Id == ''">Reset</button>
+
+        <button type="button"  ng-disabled="((!salesinvoiceForm.$valid)||(salesinvoice.CompanyCode == '')||(salesinvoice.CustomerCode == '')||(salesinvoice.TermsId == ''))" ng-click="save()" id="salesForm_SaveBtn" class="btn btn-success">Save</button>
+
+        <button type="button" ng-click="clear()" id="salesForm_ClearBtn" class="btn btn-warning" ng-show="salesinvoice.Id =='' || salesinvoice.Id =='0'">Clear</button>
+    </div>
+</form>

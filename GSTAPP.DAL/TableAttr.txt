@@ -1,0 +1,48 @@
+﻿base(System.Configuration.ConfigurationManager.ConnectionStrings["myConn"].ConnectionString)
+//@"Data Source=ASHOK_SARATHI\SQLEXPRESS;Initial Catalog=GSTAPP_DB;Persist Security Info=True;User ID=sa;Password=sqlserver;"
+//Data Source=WINSERVER\SQLEXPRESS;Initial Catalog=GSTAppDb;Persist Security Info=True;User ID=sa;Password=SQLserver123;
+//
+    [System.ComponentModel.DataAnnotations.Schema.Table("CompanyMaster")]
+    [System.ComponentModel.DataAnnotations.Key]
+
+    [System.ComponentModel.DataAnnotations.Schema.Table("CustomerMaster")]
+	[System.ComponentModel.DataAnnotations.Key]
+
+    [System.ComponentModel.DataAnnotations.Schema.Table("RegistrationMaster")]
+	[System.ComponentModel.DataAnnotations.Key]
+
+    [System.ComponentModel.DataAnnotations.Schema.Table("SupplierMaster")]
+	[System.ComponentModel.DataAnnotations.Key]
+
+    [System.ComponentModel.DataAnnotations.Schema.Table("Users")]
+	[System.ComponentModel.DataAnnotations.Key]
+
+	[System.ComponentModel.DataAnnotations.Schema.Table("DepartmentMaster")]
+	[System.ComponentModel.DataAnnotations.Key]
+
+	[System.ComponentModel.DataAnnotations.Schema.Table("ProductGroupMaster")]
+	[System.ComponentModel.DataAnnotations.Key]
+
+	[System.ComponentModel.DataAnnotations.Schema.Table("ProductMaster")]
+	[System.ComponentModel.DataAnnotations.Key]
+
+	[System.ComponentModel.DataAnnotations.Schema.Table("ItemCategoryMaster")]
+	[System.ComponentModel.DataAnnotations.Key]
+
+	[System.ComponentModel.DataAnnotations.Schema.Table("ItemTypeMaster")]
+	[System.ComponentModel.DataAnnotations.Key]
+
+	[System.ComponentModel.DataAnnotations.Schema.Table("TermsMaster")]
+	[System.ComponentModel.DataAnnotations.Key]
+
+	[System.ComponentModel.DataAnnotations.Schema.Table("PurchaseOrderMaster")]
+	[System.ComponentModel.DataAnnotations.Key]
+
+	[System.ComponentModel.DataAnnotations.Schema.Table("PurchaseOrderItems")]
+	[System.ComponentModel.DataAnnotations.Key]
+
+	[System.ComponentModel.DataAnnotations.Schema.Table("PurchaseMaster")]
+	[System.ComponentModel.DataAnnotations.Key]
+
+	[System.ComponentModel.DataAnnotations.Schema.Table("PurchaseItems")]
+	[System.ComponentModel.DataAnnotations.Key]
