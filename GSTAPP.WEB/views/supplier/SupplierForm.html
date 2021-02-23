@@ -1,0 +1,187 @@
+﻿<h2>
+    <button type="button" class="btn btn-danger" ng-click="showalert()"><span class="glyphicon glyphicon-chevron-left"></span></button> 
+    <span ng-show="(supplier.Code == '0')">New Supplier</span>
+    <span ng-hide="(supplier.Code == '0')">Edit {{supplier.CompanyName1}} Details</span>
+    
+</h2>
+<form name="supplierForm" novalidate>
+    <div class="panel panel-default">
+        <div class="panel-heading">Basic Details</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{ 'has-error' : supplierForm.supplierForm_CompanyName.$touched && supplierForm.supplierForm_CompanyName.$invalid }">
+                        <label  class="required" for="supplierForm_CompanyName">Company Name</label>
+                        <input type="text" class="form-control" id="supplierForm_CompanyName" name="supplierForm_CompanyName" ng-model="supplier.CompanyName" placeholder="Company Name" ng-pattern="/^[a-zA-Z. 0-9]{1,60}$/" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6" ng-class="{ 'has-error' : supplierForm.supplierForm_GSTIN.$touched && supplierForm.supplierForm_GSTIN.$invalid }">
+                        <div class="form-group">
+                            <label for="supplierForm_GSTIN">GSTIN</label>
+                            <input type="text" class="form-control" id="supplierForm_GSTIN" name="supplierForm_GSTIN" ng-model="supplier.GSTIN" placeholder="GSTIN" ng-pattern="/^[a-zA-Z0-9]{1,60}$/">
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+       
+        <div class="panel panel-default">
+            <div class="panel-heading">Communication Details</div>
+            <div class="panel-body">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{ 'has-error' : supplierForm.supplierForm_ContactPerson.$touched && supplierForm.supplierForm_ContactPerson.$invalid }">
+                                    <label  class="required" for="supplierForm_ContactPerson">Contact Person</label>
+                                    <input type="text" class="form-control" id="supplierForm_ContactPerson" name="supplierForm_ContactPerson" ng-model="supplier.ContactPerson" placeholder="Contact Person" ng-pattern="/^[a-zA-Z]*$/" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{ 'has-error' : supplierForm.supplierForm_Address.$touched && supplierForm.supplierForm_Address.$invalid }">
+                                    <label class="required" for="supplierForm_Address">Address</label>
+                                    <textarea class="form-control" id="supplierForm_Address" name="supplierForm_Address" ng-model="supplier.Address" placeholder="Address" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{ 'has-error' : supplierForm.supplierForm_Place.$touched && supplierForm.supplierForm_Place.$invalid }">
+                                    <label class="required" for="supplierForm_Place">Place</label>
+                                    <input type="text" class="form-control" id="supplierForm_Place" name="supplierForm_Place" ng-model="supplier.Place" placeholder="Enter Place" ng-pattern="/^[a-zA-Z , ]*$/" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{'has-error': supplier.State == ''}">
+                                    <label class="required" for="supplierForm_State">State</label>
+                                    <select class="form-control selectpicker show-tick" data-live-search="true" id="supplierForm_State" ng-model="supplier.State" placeholder="Enter State" name="supplierForm_State">
+                                        <option value="" disabled>Select</option>
+                                        <option ng-repeat="state in states" value="{{state.MiscellaneousKey}}">{{state.MiscellaneousKey}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group"  ng-class="{ 'has-error' : supplierForm.supplierForm_PostalCode.$touched && supplierForm.supplierForm_PostalCode.$invalid }">
+                                    <label  class="required" for="supplierForm_PostalCode">Postal Code</label>
+                                    <input type="text" class="form-control" id="supplierForm_PostalCode" name="supplierForm_PostalCode" ng-model="supplier.PostalCode" placeholder="Postal Code" required ng-pattern="/^[0-9]{1,6}$/">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{ 'has-error' : supplierForm.supplierForm_PhoneNo.$touched && supplierForm.supplierForm_PhoneNo.$invalid }">
+                                    <label for="supplierForm_PhoneNo">Phone No</label>
+                                    <input type="text" class="form-control" id="supplierForm_PhoneNo" name="supplierForm_PhoneNo" ng-model="supplier.PhoneNo" placeholder="Enter Phone No" ng-pattern="/^[0-9]{1,10}$/">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{ 'has-error' : supplierForm.supplierForm_MobileNo.$touched && supplierForm.supplierForm_MobileNo.$invalid }">
+                                    <label  class="required" for="supplierForm_MobileNo">Mobile No</label>
+                                    <input type="text" class="form-control" id="supplierForm_MobileNo" name="supplierForm_MobileNo" ng-model="supplier.MobileNo" placeholder="Enter Mobile No" required ng-pattern="/^[0-9, ]{1,60}$/">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{ 'has-error' : supplierForm.supplierForm_WhatsAppNo.$touched && supplierForm.supplierForm_WhatsAppNo.$invalid }">
+                                    <label for="supplierForm_WhatsAppNo">WhatsApp No</label>
+                                    <input type="text" class="form-control" id="supplierForm_WhatsAppNo" name="supplierForm_WhatsAppNo" ng-model="supplier.WhatsAppNo" placeholder="WhatsApp No" ng-pattern="/^[0-9]{1,10}$/">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group"  ng-class="{ 'has-error' : supplierForm.supplierForm_Fax.$touched && supplierForm.supplierForm_Fax.$invalid }">
+                                    <label for="supplierForm_Fax">Fax</label>
+                                    <input type="text" class="form-control" id="supplierForm_Fax" name="supplierForm_Fax" ng-model="supplier.Fax" placeholder="Enter Fax" ng-pattern="/^[0-9]{1,11}$/">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row"> 
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{ 'has-error' : supplierForm.supplierForm_Email.$touched && supplierForm.supplierForm_Email.$invalid }">
+                                    <label class="required" for="supplierForm_Email">Email </label>
+                                    <input type="email" class="form-control" id="supplierForm_Email" name="supplierForm_Email" ng-model="supplier.Email" placeholder="Enter email" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="supplierForm_WebSite">WebSite</label>
+                                    <input class="form-control" id="supplierForm_WebSite" ng-model="supplier.WebSite" placeholder="Enter WebSite">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Bank Details</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{ 'has-error' : supplierForm.supplierForm_BankName.$touched && supplierForm.supplierForm_BankName.$invalid }">
+                            <label for="supplierForm_BankName">Bank Name </label>
+                            <input class="form-control" id="supplierForm_BankName" name="supplierForm_BankName" ng-model="supplier.BankName" placeholder="Enter Bank Name" ng-pattern="/^[a-zA-Z. 0-9]{1,60}$/">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{ 'has-error' : supplierForm.supplierForm_BranchName.$touched && supplierForm.supplierForm_BranchName.$invalid }">
+                            <label for="supplierForm_BranchName">Branch Name</label>
+                            <input type="text" class="form-control" id="supplierForm_BranchName" name="supplierForm_BranchName" ng-model="supplier.BranchName" placeholder="Enter Branch Name" ng-pattern="/^[a-zA-Z. 0-9]{1,60}$/">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{ 'has-error' : supplierForm.supplierForm_IFSCCode.$touched && supplierForm.supplierForm_IFSCCode.$invalid }">
+                            <label for="supplierForm_IFSCCode">IFSC Code</label>
+                            <input type="text" class="form-control" id="supplierForm_IFSCCode" name="supplierForm_IFSCCode" ng-model="supplier.IFSCCode" placeholder="IFSC Code" ng-pattern="/^[a-zA-Z 0-9]{1,60}$/">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{ 'has-error' : supplierForm.supplierForm_AccountNo.$touched && supplierForm.supplierForm_AccountNo.$invalid }">
+                            <label for="supplierForm_AccountNo">Account No</label>
+                            <input type="text" class="form-control" id="supplierForm_AccountNo" name="supplierForm_AccountNo" ng-model="supplier.AccountNo" placeholder="Enter Account No" ng-pattern="/^[0-9]{1,20}$/">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+            <div class="panel-heading">Other Details</div>
+            <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="supplierForm_Description">Description</label>
+                                    <textarea class="form-control" id="supplierForm_Description" name="supplierForm_Description" ng-model="supplier.Description" placeholder="Description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-show="((!supplierForm.$valid) || (supplier.State == ''))">
+                    <div class="col-md-4"></div>
+                    <div class="text-center alert alert-info col-md-4 col-centered">
+                        <strong>Fill all required(*) fields.</strong>
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <button type="button" ng-click="reset()" ng-hide="supplier.Code == '0' || supplier.Code == ''" id="supplierForm_ResetBtn" class="btn btn-info">Reset</button>
+
+                    <button type="button" ng-disabled="((!supplierForm.$valid) || (supplier.State == ''))" ng-click="save()" id="supplierForm_SaveBtn" class="btn btn-success">Save</button>
+
+                    <button type="button" ng-click="clear()" ng-show="supplier.Code == '0' || supplier.Code == ''" id="supplierForm_ClearBtn" class="btn btn-warning">Clear</button>
+                </div>
+</form>
+
+
+
+

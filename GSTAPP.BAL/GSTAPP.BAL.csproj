@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F722CCD7-6A3E-4DAF-BAF8-928890141181}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GSTAPP.BAL</RootNamespace>
+    <AssemblyName>GSTAPP.BAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Asset\Assets.cs" />
+    <Compile Include="Asset\auth.cs" />
+    <Compile Include="Asset\Models\CompanyMaster.cs" />
+    <Compile Include="Asset\Models\CustomerMaster.cs" />
+    <Compile Include="Asset\Models\DepartmentMaster.cs" />
+    <Compile Include="Asset\Models\ItemCategoryMaster.cs" />
+    <Compile Include="Asset\Models\MiscellaneousMaster.cs" />
+    <Compile Include="Asset\Models\ItemTypeMaster.cs" />
+    <Compile Include="Asset\Models\LoginModel.cs" />
+    <Compile Include="Asset\Models\ProductGroupMaster.cs" />
+    <Compile Include="Asset\Models\ProductMaster.cs" />
+    <Compile Include="Asset\Models\PurchaseInvoiceViewModel.cs" />
+    <Compile Include="Asset\Models\PurchaseOrderViewModel.cs" />
+    <Compile Include="Asset\Models\RegistrationMaster.cs" />
+    <Compile Include="Asset\Models\ReturnModel.cs" />
+    <Compile Include="Asset\Models\SalesInvoiceViewModel.cs" />
+    <Compile Include="Asset\Models\SalesOrderViewModel.cs" />
+    <Compile Include="Asset\Models\SupplierMaster.cs" />
+    <Compile Include="Asset\Models\TermsMaster.cs" />
+    <Compile Include="Asset\Models\User.cs" />
+    <Compile Include="Asset\Models\UserClass.cs" />
+    <Compile Include="Asset\Services\DepartmentService.cs" />
+    <Compile Include="Asset\Services\ItemCategoryService.cs" />
+    <Compile Include="Asset\Services\MiscellaneousService.cs" />
+    <Compile Include="Asset\Services\ProductService.cs" />
+    <Compile Include="Asset\Services\CompanyService.cs" />
+    <Compile Include="Asset\Services\CustomerService.cs" />
+    <Compile Include="Asset\IService.cs" />
+    <Compile Include="Asset\Services\ItemTypeService.cs" />
+    <Compile Include="Asset\Services\ProductGroupService.cs" />
+    <Compile Include="Asset\Service.cs" />
+    <Compile Include="Asset\Services\SalesInvoiceService.cs" />
+    <Compile Include="Asset\Services\PurchaseInvoiceService.cs" />
+    <Compile Include="Asset\Services\PurchaseOrderService.cs" />
+    <Compile Include="Asset\Services\RegistrationService.cs" />
+    <Compile Include="Asset\Services\SalesorderService.cs" />
+    <Compile Include="Asset\Services\SupplierService.cs" />
+    <Compile Include="Asset\Services\TermsService.cs" />
+    <Compile Include="Asset\Services\UserService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UOW.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GSTAPP.DAL\GSTAPP.DAL.csproj">
+      <Project>{aa9d38b5-0f02-4843-ac87-325f09d16586}</Project>
+      <Name>GSTAPP.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

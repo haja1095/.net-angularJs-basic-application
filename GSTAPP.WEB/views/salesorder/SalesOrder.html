@@ -1,0 +1,26 @@
+﻿
+        <h2>
+            Sales Order <button type="button" class="btn btn-primary btn-sm" ui-sref="app.salesorderForm({Code:'0'})"><span class="glyphicon glyphicon-plus"></span>Add</button>
+
+        </h2>
+        <table id="salesorderTbl" class="table" style="width:100%">
+            <thead>
+                <tr>
+
+                    <th>Company</th>
+                    <th>Customer</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="salesorder in salesorders">
+                    <td>{{salesorder.CompanyCode}}</td>
+                    <td>{{salesorder.CustomerCode}}</td>
+                    <!--<td>{{salesorder.ShippingAddress}}</td>-->
+                    <td><button type="button" ui-sref="app.salesorderForm({Code:'{{salesorder.Id}}'})" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span>Edit</button></td>
+                    <td><button type="button" class="btn btn-danger btn-sm" ng-click="showDelete(salesorder)"><span class="glyphicon glyphicon-remove"></span>Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    

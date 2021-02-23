@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{36E27DEB-1668-4DDD-9326-5EC29D22F432}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GSTAPP.WEB</RootNamespace>
+    <AssemblyName>GSTAPP.WEB</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app\app.js" />
+    <Content Include="app\config\config.js" />
+    <Content Include="app\controllers\customerCtrl.js" />
+    <Content Include="app\controllers\departmentCtrl.js" />
+    <Content Include="app\controllers\dialogModelCtrl.js" />
+    <Content Include="app\controllers\EmailVerificationSuccessCtrl.js" />
+    <Content Include="app\controllers\itemcategoryCtrl.js" />
+    <Content Include="app\controllers\itemtypeCtrl .js" />
+    <Content Include="app\controllers\layoutCtrl.js" />
+    <Content Include="app\controllers\controlesCtrl.js" />
+    <Content Include="app\controllers\companyCtrl.js" />
+    <Content Include="app\controllers\productCtrl.js" />
+    <Content Include="app\controllers\productgroupCtrl.js" />
+    <Content Include="app\controllers\profilepageCtrl.js" />
+    <Content Include="app\controllers\registrationsuccessCtrl.js" />
+    <Content Include="app\controllers\resendCtrl.js" />
+    <Content Include="app\controllers\resendsuccessCtrl.js" />
+    <Content Include="app\controllers\salesinvoiceCtrl.js" />
+    <Content Include="app\controllers\purchaseinvoiceCtrl.js" />
+    <Content Include="app\controllers\purchaseorderCtrl.js" />
+    <Content Include="app\controllers\registrationCtrl.js" />
+    <Content Include="app\controllers\loginCtrl.js" />
+    <Content Include="app\controllers\salesorderCtrl.js" />
+    <Content Include="app\controllers\supplierCtrl.js" />
+    <Content Include="app\controllers\termsCtrl.js" />
+    <Content Include="app\controllers\EmailVerificationCtrl.js" />
+    <Content Include="app\controllers\verificationCtrl.js" />
+    <Content Include="app\controllers\validationCtrl.js" />
+    <Content Include="app\directives\directive.js" />
+    <Content Include="app\factory\factory.js" />
+    <Content Include="app\js\angularJs\angular-chart.min.js" />
+    <Content Include="app\js\angularJs\angular-image-cropper.js" />
+    <Content Include="app\js\angularJs\angular-toggle-switch.min.js" />
+    <Content Include="app\js\angularJs\angular-ui-router.min.js" />
+    <Content Include="app\js\angularJs\angular-ui-utils.min.js" />
+    <Content Include="app\js\angularJs\angular.min.js" />
+    <Content Include="app\js\angularJs\moment-with-locales.min.js" />
+    <Content Include="app\js\angularJs\ng-file-upload-shim.js" />
+    <Content Include="app\js\angularJs\ng-file-upload.js" />
+    <Content Include="app\js\angularJs\toaster.min.js" />
+    <Content Include="app\js\bootstrap\bootstrap-select.js" />
+    <Content Include="app\js\bootstrap\bootstrap.min.js" />
+    <Content Include="app\js\bootstrap\dataTables.bootstrap.min.js" />
+    <Content Include="app\js\bootstrap\ui-bootstrap-tpls.min.js" />
+    <Content Include="app\js\jquery\Chart.min.js" />
+    <Content Include="app\js\jquery\dataTables.responsive.min.js" />
+    <Content Include="app\js\jquery\jquery.dataTables.min.js" />
+    <Content Include="app\js\jquery\jquery.mCustomScrollbar.concat.min.js" />
+    <Content Include="app\js\jquery\jquery.min.js" />
+    <Content Include="css\jquery\jquery.mCustomScrollbar.min.css" />
+    <Content Include="css\jquery\responsive.dataTables.min.css" />
+    <Content Include="app\services\services.js" />
+    <Content Include="codes.txt" />
+    <Content Include="css\angularJs\angular-toggle-switch-bootstrap-3.css" />
+    <Content Include="css\angularJs\toaster.min.css" />
+    <Content Include="css\bootstrap\bootstrap-select.css" />
+    <Content Include="css\bootstrap\bootstrap.min.css" />
+    <Content Include="css\bootstrap\dataTables.bootstrap.min.css" />
+    <Content Include="css\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="css\otherCSS\login.css" />
+    <Content Include="css\otherCSS\myStyle.css" />
+    <Content Include="css\otherCSS\simple-sidebar.css" />
+    <Content Include="Global.asax" />
+    <Content Include="img\computer.png" />
+    <Content Include="img\datableIcons\sort_asc.png" />
+    <Content Include="img\datableIcons\sort_asc_disabled.png" />
+    <Content Include="img\datableIcons\sort_both.png" />
+    <Content Include="img\datableIcons\sort_desc.png" />
+    <Content Include="img\datableIcons\sort_desc_disabled.png" />
+    <Content Include="img\loginBc.png" />
+    <Content Include="img\loginBc1.png" />
+    <Content Include="img\loginBc2.png" />
+    <Content Include="img\loginBc3.png" />
+    <Content Include="img\loginBc4.png" />
+    <Content Include="img\loginBc5.png" />
+    <Content Include="img\manager_man.png" />
+    <Content Include="img\sidenavimg.png" />
+    <Content Include="views\company\company.html" />
+    <Content Include="views\company\companyFormDialog.html" />
+    <Content Include="views\company\companyForm.html" />
+    <Content Include="views\controles.html" />
+    <Content Include="views\customer\Customer.html" />
+    <Content Include="views\customer\CustomerForm.html" />
+    <Content Include="views\customer\customerFormDialog.html" />
+    <Content Include="views\department\Department.html" />
+    <Content Include="views\department\DepartmentForm.html" />
+    <Content Include="views\department\DepartmentFormDialog.html" />
+    <Content Include="views\backDialogModel.html" />
+    <Content Include="views\logoutDialogModel.html" />
+    <Content Include="views\DialogModel.html" />
+    <Content Include="views\EmailVerificationForm.html" />
+    <Content Include="views\EmailVerificationSuccess.html" />
+    <Content Include="views\itemcategory\ItemCategory.html" />
+    <Content Include="views\itemcategory\itemcategoryForm.html" />
+    <Content Include="views\itemcategory\itemcategoryFormDialog.html" />
+    <Content Include="views\itemtype\itemtype.html" />
+    <Content Include="views\itemtype\itemtypeForm.html" />
+    <Content Include="views\itemtype\itemtypeFormDialog.html" />
+    <Content Include="views\layout.html" />
+    <Content Include="views\loginPage.html" />
+    <Content Include="views\logoCrop.html" />
+    <Content Include="views\productgroup\ProductGroup.html" />
+    <Content Include="views\productgroup\ProductgroupForm.html" />
+    <Content Include="views\productgroup\ProductgroupFormDialog.html" />
+    <Content Include="views\product\Product.html" />
+    <Content Include="views\product\productForm.html" />
+    <Content Include="views\product\productFormDialog.html" />
+    <Content Include="views\profilepage\profilepage.html" />
+    <Content Include="views\RegistrationSuccess.html" />
+    <Content Include="views\Resend.html" />
+    <Content Include="views\ResendSuccess.html" />
+    <Content Include="views\salesinvoice\SalesInvoice.html" />
+    <Content Include="views\salesinvoice\salesinvoiceForm.html" />
+    <Content Include="views\purchaseinvoice\PurchaseInvoice.html" />
+    <Content Include="views\purchaseinvoice\purchaseinvoiceForm.html" />
+    <Content Include="views\purchaseorder\PurchaseOrder.html" />
+    <Content Include="views\purchaseorder\purchaseorderForm.html" />
+    <Content Include="views\RegistrationPage.html" />
+    <Content Include="views\salesorder\SalesOrder.html" />
+    <Content Include="views\salesorder\salesorderForm.html" />
+    <Content Include="views\supplier\Supplier.html" />
+    <Content Include="views\supplier\SupplierForm.html" />
+    <Content Include="views\supplier\SupplierFormDialog.html" />
+    <Content Include="views\terms\Terms.html" />
+    <Content Include="views\terms\termsForm.html" />
+    <Content Include="views\terms\termsFormDialog.html" />
+    <Content Include="views\ValidationPage.html" />
+    <Content Include="views\verificationForm.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="index.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\ItemCategoryController.cs" />
+    <Compile Include="Controllers\ItemTypeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MiscellaneousController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProductGroupController.cs" />
+    <Compile Include="Controllers\PurchaseInvoiceController.cs" />
+    <Compile Include="Controllers\PurchaseOrderController.cs" />
+    <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="Controllers\SalesInvoiceController.cs" />
+    <Compile Include="Controllers\SalesOrderController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="Controllers\TermsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="css\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="css\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="css\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="css\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="css\bootstrap\bootstrap.min.css.map" />
+    <None Include="Properties\PublishProfiles\GSTAPP.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="app\js\otherJs\" />
+    <Folder Include="App_Data\" />
+    <Folder Include="img\icons\" />
+    <Folder Include="Models\" />
+    <Folder Include="Reports\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GSTAPP.BAL\GSTAPP.BAL.csproj">
+      <Project>{f722ccd7-6a3e-4daf-baf8-928890141181}</Project>
+      <Name>GSTAPP.BAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GSTAPP.DAL\GSTAPP.DAL.csproj">
+      <Project>{AA9D38B5-0F02-4843-AC87-325F09D16586}</Project>
+      <Name>GSTAPP.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GSTAPP.REP\GSTAPP.REP.csproj">
+      <Project>{a4ba4d38-59ae-44d2-beb2-08298b44be34}</Project>
+      <Name>GSTAPP.REP</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

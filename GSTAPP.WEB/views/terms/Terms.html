@@ -1,0 +1,24 @@
+﻿
+        <h2>
+            Terms <button type="button" class="btn btn-primary btn-sm" ui-sref="app.termsForm({Code:'0'})"><span class="glyphicon glyphicon-plus"></span>Add</button>
+        </h2>
+        <table id="termsTbl" class="table"  style="width:100%">
+            <thead>
+                <tr>
+                    <th>Terms Name</th>
+                    <th>No Of Days</th>
+                    <th>Remarks</th>
+                    <th>#</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="terms in termss">
+                    <td>{{terms.TermsName}}</td>
+                    <td>{{terms.NumberOfDays}}</td>
+                    <td>{{terms.Remarks}}</td>
+                    <td><button type="button" ui-sref="app.termsForm({Code:'{{terms.Code}}'})" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span>Edit</button></td>
+                    <td><button type="button" class="btn btn-danger btn-sm" ng-click="showDelete(terms)"><span class="glyphicon glyphicon-remove"></span>Delete</button></td>
+                </tr>
+            </tbody>
+        </table>

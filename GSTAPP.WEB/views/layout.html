@@ -1,0 +1,168 @@
+
+<div class="overlay"></div>
+<div class="wrapper">
+    <nav id="sidebar">
+        <div id="dismiss">
+            <i class="glyphicon glyphicon-arrow-left"></i>
+        </div>
+        <div class="sidebar-header" ui-sref="app">
+            <h3>Bill Application</h3>
+        </div>
+        <ul class="list-unstyled components">
+            <li ui-sref="app.company">
+                <a>Company</a>
+            </li>
+            <li ui-sref="app.customer">
+                <a>Customer</a>
+            </li>
+            <li ui-sref="app.supplier">
+                <a>Supplier</a>
+            </li>
+            <li ui-sref="app.department">
+                <a>Department</a>
+            </li>
+            <li>
+                <a href="#proSubmenu" data-toggle="collapse" aria-expanded="false">Production</a>
+                <ul class="collapse list-unstyled" id="proSubmenu">
+                    <li ui-sref="app.productgroup">
+                        <a>Product Group</a>
+                    </li>
+                    <li ui-sref="app.product">
+                        <a>Product</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#itemSubmenu" data-toggle="collapse" aria-expanded="false">Items</a>
+                <ul class="collapse list-unstyled" id="itemSubmenu">
+                    <li ui-sref="app.itemcategory">
+                        <a>Item Category</a>
+                    </li>
+                    <li ui-sref="app.itemtype">
+                        <a>Item Type</a>
+                    </li>
+                </ul>
+            </li>
+            <li ui-sref="app.terms">
+                <a>Terms</a>
+            </li>
+            <li>
+                <a href="#purSubmenu" data-toggle="collapse" aria-expanded="false">Orders</a>
+                <ul class="collapse list-unstyled" id="purSubmenu">
+                    <li ui-sref="app.purchaseorder">
+                        <a>Purchase Order</a>
+                    </li>
+                    <li ui-sref="app.salesorder">
+                        <a>Sales Order</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#salSubmenu" data-toggle="collapse" aria-expanded="false">Invoices</a>
+                <ul class="collapse list-unstyled" id="salSubmenu">
+                    <li ui-sref="app.purchaseinvoice">
+                        <a>Purchase Invoice</a>
+                    </li>
+                    <li ui-sref="app.salesinvoice">
+                        <a>Sales Invoice</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <nav id="myNavbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="glyphicon glyphicon-menu-down"></span>
+                </button>
+
+                <a id="sidebarCollapse" class="btn navbar-brand">
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <!--<ul class="nav navbar-nav">
+                    <li><a href="#">Home</a></li>
+                </ul>-->
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Settings <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a ui-sref="app.profilepage">Profile</a></li>
+                            <li class="divider"></li>
+                            <li><a ng-click="logout()">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div>
+        <toaster-container toaster-options="{'close-button':false ,'time-out': 3000}"></toaster-container>
+    </nav>
+    <div class="container-fluid" ui-view>
+        <div class="row">
+            <div class="col-sm-6 ng-scope" id="pie-chart">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Pie Chart</div>
+                    <div class="panel-body">
+                        <canvas class="chart chart-line col-md-12" chart-data="data" chart-labels="labels"
+                                chart-series="series" chart-click="onClick"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 ng-scope" id="pie-chart">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Pie Chart</div>
+                    <div class="panel-body">
+                        <canvas id="doughnut" class="chart chart-doughnut"
+                                chart-data="data1" chart-labels="labels1"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 ng-scope" id="pie-chart">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Pie Chart</div>
+                    <div class="panel-body">
+                        <canvas id="pie" class="chart chart-pie"
+                                chart-data="data2" chart-labels="labels2" chart-options="options"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 ng-scope" id="pie-chart">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Pie Chart</div>
+                    <div class="panel-body">
+                        <canvas id="base" class="chart-bar"
+                                chart-data="data" chart-labels="labels" chart-colors="colors"
+                                chart-dataset-override="datasetOverride"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
+        $('#dismiss, .overlay').on('click', function () {
+            $('#sidebar').removeClass('active');
+            $('.overlay').fadeOut();
+        });
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').addClass('active');
+            $('.overlay').fadeIn();
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+    });
+</script>

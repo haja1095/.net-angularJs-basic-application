@@ -1,0 +1,29 @@
+﻿<div class="row main-section main-section-verification">
+    <div class="col-md-4 col-sm-6 col-xs-10 col-md-offset-4 col-sm-offset-3 col-xs-offset-1 login-image-main text-center">
+        <div class="col-md-12 col-sm-12 col-xs-12 user-image-section">
+            <h1>Verification</h1>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 user-login-box">
+            <div class="form-group" ng-hide="verification.EmailVerification">
+                <div class='input-group'>
+                    <input type="password" class="form-control" placeholder="Email Verification Code" ng-model="verification.EmailVerificationCode">
+                    <a class="btn btn-primary input-group-addon" ng-click="verifyEmail()"><span class="glyphicon glyphicon-ok"></span>&nbsp; Verify</a>
+                </div>
+            </div>
+            <div class="form-group" ng-hide="verification.PhoneNoVerification">
+                <div class='input-group'>
+                    <input type="password" class="form-control" placeholder="Phone Verification Code" ng-model="verification.PhoneNoVerificationCode"><br />
+                    <a class="btn btn-primary input-group-addon" ng-click="verifyPhone()"><span class="glyphicon glyphicon-ok"></span>&nbsp; Verify</a>
+                </div>
+            </div>
+            <a class="btn btn-warning col-md-8 col-sm-8 col-xs-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2" ng-click="resendData()">Resend</a>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 last-part">
+            <p>Alredy have account?<a ui-sref="login"> Signin </a></p>
+            <p>Not registered?<a ui-sref="registration"> Create an account</a></p>
+        </div>
+    </div>
+</div>
+
+
+<toaster-container toaster-options="{'close-button':false ,'time-out': 3000}"></toaster-container>

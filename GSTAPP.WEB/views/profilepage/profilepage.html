@@ -1,0 +1,41 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                My Profile
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <img style="width:100%" src="img/manager_man.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <h3>TEST NAME </h3>
+                        <h5>Admin</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                My Companys
+            </div>
+            <div class="panel-body">
+                <table id="comTables" class="table" style="width:100%">
+                    <tbody>
+                        <tr ng-repeat="company in companys" data-toggle="popover" title="{{company.CompanyName}}" data-content='<img src="{{setLogo(company)}}" style="height:130px;width: 150px;" />'>
+                            <td>{{company.CompanyName}}</td>
+                            <td><center>{{company.Logo}}<img ng-src="{{setLogo(company)}}" style="height:30px;" /></center></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

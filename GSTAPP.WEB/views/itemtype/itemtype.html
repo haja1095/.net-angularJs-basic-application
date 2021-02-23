@@ -1,0 +1,23 @@
+﻿
+        <h2>
+            ItemType <button type="button" class="btn btn-primary btn-sm" ui-sref="app.itemtypeForm({Code:'0'})"><span class="glyphicon glyphicon-plus"></span>Add</button>
+        </h2>
+       <table id="itemtypeTbl" class="table"  style="width:100%">
+            <thead>
+                <tr>
+                    <th>ItemType Name</th>
+                    <th>Item Category</th>
+                    
+                    <th>#</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="itemtype in itemtypes">
+                    <td>{{itemtype.ItemTypeName}}</td>
+                    <td>{{itemtype.ItemCategory}}</td>
+                    <td><button type="button" ui-sref="app.itemtypeForm({Code:'{{itemtype.Id}}'})" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span>Edit</button></td>
+                    <td><button type="button" class="btn btn-danger btn-sm" ng-click="showDelete(itemtype)"><span class="glyphicon glyphicon-remove"></span>Delete</button></td>
+                </tr>
+            </tbody>
+        </table>

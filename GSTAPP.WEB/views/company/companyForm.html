@@ -1,0 +1,143 @@
+﻿
+<h2><button type="button" class="btn btn-danger" ng-click="showalert()"><span class="glyphicon glyphicon-chevron-left"></span></button> 
+    <span ng-show="(company.Code == '0')">New Company</span>
+    <span ng-hide="(company.Code == '0')">Edit {{company.CompanyName1}} Details</span>
+    </h2>
+<form name="companyForm" novalidate>
+    <div class="panel panel-default">
+        <div class="panel-heading">Basic Details</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{'has-error': companyForm.companyForm_CompanyName.$invalid && companyForm.companyForm_CompanyName.$touched}">
+                        <label class="required" for="companyForm_CompanyName">Company Name</label>
+                        <input type="text" class="form-control" id="companyForm_CompanyName" ng-pattern="/^[a-zA-Z. 0-9]{1,60}$/" required name="companyForm_CompanyName" ng-model="company.CompanyName" placeholder="Enter Company Name">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="companyForm_GSTIN">GSTIN</label>
+                        <input type="text" class="form-control" id="companyForm_GSTIN" name="companyForm_GSTIN" ng-model="company.GSTIN" placeholder="Enter GSTIN" ng-pattern="/^[a-zA-Z0-9]{1,60}$/">
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Logo</label>
+                                <button class="btn btn-primary form-control" id="btnfileInput">Logo</button>
+                                <input ng-hide="true" type="file" ngf-select ng-model="picFiles" name="file" accept="image/*" ngf-model-invalid="errorFile" class="btn btn-primary form-control" id="fileInput"><!--Logo</input>-->
+                                <!--{{errorFile.size / 1000000|number:1}}-->
+                            </div>
+                            <div class="form-group">
+                                <button ng-click="showConfirm($event)" ng-show="she()" class="btn btn-warning form-control">Remove</button>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <img id="imgctn" ng-show="companyForm.file.$valid" ng-src="{{picFile}}" style="width:100%;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+        </div>
+        </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Communication Details</div>
+        <div class="panel-body">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" ng-class="{'has-error': companyForm.companyForm_Address.$invalid && companyForm.companyForm_Address.$touched}">
+                                <label class="required" for="companyForm_Address">Address</label>
+                                <textarea input type="text" class="form-control" id="companyForm_Address" ng-model="company.Address" placeholder="Enter Address" required name="companyForm_Address"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group" ng-class="{'has-error': company.State == ''}">
+                                <label class="required" for="companyForm_State">State</label>
+                                <select class="form-control selectpicker show-tick" data-live-search="true" id="companyForm_State" ng-model="company.State" placeholder="Enter State" name="companyForm_State">
+                                    <option value="" disabled>Select</option>
+                                    <option ng-repeat="state in states" value="{{state.MiscellaneousKey}}">{{state.MiscellaneousKey}} </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" ng-class="{'has-error': companyForm.companyForm_PostalCode.$invalid && companyForm.companyForm_PostalCode.$touched}">
+                                <label class="required" for="companyForm_PostalCode">Postal Code</label>
+                                <input type="text" class="form-control" id="companyForm_PostalCode" name="companyForm_PostalCode" ng-model="company.PostalCode" placeholder="Enter Postal Code" required ng-pattern="/^[0-9]{1,6}$/">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" ng-class="{'has-error': companyForm.companyForm_PhoneNo.$invalid && companyForm.companyForm_PhoneNo.$touched}">
+                                <label for="companyForm_PhoneNo">Phone No</label>
+                                <input type="text" class="form-control" id="companyForm_PhoneNo" name="companyForm_PhoneNo" ng-model="company.PhoneNo" placeholder="Enter Phone No" ng-pattern="/^[0-9, ]{1,60}$/">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group" ng-class="{'has-error': companyForm.companyForm_MobileNo.$invalid && companyForm.companyForm_MobileNo.$touched}">
+                                <label class="required" for="companyForm_MobileNo">Mobile No</label>
+                                <input type="text" class="form-control" id="companyForm_MobileNo" name="companyForm_MobileNo" ng-model="company.MobileNo" placeholder="Enter Mobile No" required ng-pattern="/^[0-9, ]{1,60}$/">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" ng-class="{'has-error': companyForm.companyForm_Fax.$invalid && companyForm.companyForm_Fax.$touched}">
+                                <label for="companyForm_Fax">Fax</label>
+                                <input type="text" class="form-control" id="companyForm_Fax" name="companyForm_Fax" ng-pattern="/^[0-9]{1,11}$/" ng-model="company.Fax" placeholder="Enter Fax">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group" ng-class="{'has-error': companyForm.companyForm_Email.$invalid && companyForm.companyForm_Email.$touched}">
+                                <label class="required" for="companyForm_Email">Email</label>
+                                <input type="email" class="form-control" id="companyForm_Email" required name="companyForm_Email" ng-model="company.Email" placeholder="Enter Email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="companyForm_Website">Website</label>
+                            <input type="text" class="form-control" id="companyForm_Website" ng-model="company.WebSite" placeholder="Enter Website">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Other Details</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="companyForm_Description">Description</label>
+                        <textarea input type="text" class="form-control" id="companyForm_Description" ng-model="company.Description" placeholder="Enter Description"></textarea>
+                    </div>
+                </div>
+                     </div>
+        </div>
+    </div>
+    <div class="row" ng-show="((!companyForm.$valid) || (company.State == ''))">
+        <div class="col-md-4"></div>
+        <div class="text-center alert alert-info col-md-4 col-centered">
+            <strong>Fill all required(*) fields.</strong>
+        </div>
+    </div>
+    <div class="form-group text-center">
+        <button type="button" ng-click="reset()" id="companyForm_ResetBtn" class="btn btn-info" ng-hide="company.Code =='0' || company.Code == ''">Reset</button>
+        <button type="button" ng-disabled="((!companyForm.$valid) || (company.State == ''))" ng-click="uploadPic(picFile)" id="companyForm_SaveBtn" class="btn btn-success">Save</button>
+        <button type="button" ng-click="clear()" id="companyForm_ClearBtn" class="btn btn-warning" ng-show="company.Code =='' || company.Code =='0'">Clear</button>
+    </div>
+</form>

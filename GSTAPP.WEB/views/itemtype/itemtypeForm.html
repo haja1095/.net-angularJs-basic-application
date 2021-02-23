@@ -1,0 +1,63 @@
+﻿
+        <h2>
+            <button type="button" class="btn btn-danger" ng-click="showalert()"><span class="glyphicon glyphicon-chevron-left"></span></button> 
+            <span ng-show="(itemtype.Id == '0')">New Item Type</span>
+            <span ng-hide="(itemtype.Id == '0')">Edit {{itemtype.ItemTypeName1}} Details</span>       
+         </h2>
+
+        <form name="itemtypeForm">
+    <div class="panel panel-default">
+        <div class="panel-heading">Basic Details</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{ 'has-error' : itemtypeForm.itemtypeForm_ItemTypeName.$touched && itemtypeForm.itemtypeForm_ItemTypeName.$invalid }">
+                        <label class="required" for="itemtypeForm_ItemTypeName">ItemType Name</label>
+                        <input type="text" class="form-control" id="itemtypeForm_ItemTypeName" name="itemtypeForm_ItemTypeName" ng-model="itemtype.ItemTypeName" placeholder="ItemType Name" ng-pattern="/^[a-zA-Z\s]*$/" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{'has-error': itemtype.Company1 == ''}">
+                        <label class="required" for="itemtypeForm_Company">Company Name</label>
+                        <select class="form-control selectpicker show-tick" data-live-search="true" multiple id="itemtypeForm_Company" ng-model="itemtype.Company1" toggle-dropdown name="itemtypeForm_Company" required>
+                            <option value="" disabled>Select</option>
+                            <option ng-repeat="company in companys" value="{{company.Code}}">{{company.CompanyName}}</option>
+                        </select>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{'has-error': itemtype.ItemCategory == ''}">
+                        <label class="required" for="itemtypeForm_ItemCategory">Item Category</label>
+                        <select ng-change="showNewItemCategory()" class="form-control selectpicker show-tick" data-live-search="true" id="itemtypeForm_ItemCategory" ng-model="itemtype.ItemCategory" toggle-dropdown name="itemtypeForm_ItemCategory">
+                            <option value="" disabled>Select</option>
+                            <option ng-repeat="itemCategory in itemCategorys" value="{{itemCategory.Id}}">
+                                {{itemCategory.ItemCategoryName}}
+                            </option>
+                            <optgroup label="">
+                                <option value="_">New Item Category</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" ng-show="((!itemtypeForm.$valid)||(itemtype.ItemCategory == ''))">
+        <div class="col-md-4"></div>
+        <div class="text-center alert alert-info col-md-4 col-centered">
+            <strong>Fill all required(*) fields.</strong>
+        </div>
+    </div>
+    <div class="form-group text-center">
+        <button type="button" ng-click="reset()" id="itemtype_ResetBtn" class="btn btn-info" ng-hide="itemtype.Id =='0' || itemtype.Id == ''">Reset</button>
+        <button type="button" ng-disabled="((!itemtypeForm.$valid)||(itemtype.ItemCategory == ''))" ng-click="save()" id="itemtype_SaveBtn" class="btn btn-success">Save</button>
+        <button type="button" ng-click="clear()" id="itemtype_ClearBtn" class="btn btn-warning" ng-show="itemtype.Id =='' || itemtype.Id =='0'">Clear</button>
+    </div>
+</form>
+       

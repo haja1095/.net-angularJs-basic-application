@@ -1,0 +1,28 @@
+﻿<div class="row main-section main-section-registration">
+    <div class="col-md-4 col-sm-6 col-xs-10 col-md-offset-4 col-sm-offset-3 col-xs-offset-1 login-image-main text-center">
+        <div class="col-md-12 col-sm-12 col-xs-12 user-image-section">
+            <h1>Registration</h1>
+        </div>
+        <form name="registrationForm" novalidate>
+            <div class="col-md-12 col-sm-12 col-xs-12 user-login-box">
+                <div class="form-group" ng-class="{ 'has-error' : registrationForm.registrationForm_Email.$touched && registrationForm.registrationForm_Email.$invalid }">
+                    <input type="email" name="registrationForm_Email" class="form-control" placeholder="Email" ng-model="registration.Email" required>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : registrationForm.registrationForm_PhoneNo.$touched && registrationForm.registrationForm_PhoneNo.$invalid }">
+                    <input type="text"  name="registrationForm_PhoneNo" class="form-control" placeholder="Phone Number" ng-model="registration.PhoneNo" ng-pattern="/^[0-9]{1,60}$/" required>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : registrationForm.registrationForm_Password.$touched && registrationForm.registrationForm_Password.$invalid }">
+                    <input type="password" class="form-control" name="registrationForm_Password" placeholder="Password" ng-model="registration.Password" required>
+                </div>
+                <button class="btn btn-primary col-md-8 col-sm-8 col-xs-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2" ng-click="regUser()" ng-disabled="(!registrationForm.$valid)">Register</button>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 last-part">
+                <p>Alredy have account?<a ui-sref="login"> Signin </a></p>
+                <!--<p>Not Verify?<a ui-sref="validation"> Verify my account</a></p>-->
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<toaster-container toaster-options="{'close-button':false ,'time-out': 3000}"></toaster-container>

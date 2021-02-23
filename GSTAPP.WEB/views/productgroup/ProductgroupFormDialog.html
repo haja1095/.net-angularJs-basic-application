@@ -1,0 +1,42 @@
+﻿<dialog-Form></dialog-Form>
+<div class="container-fluid">
+    <h2>
+        <span>New Product Group</span>
+    </h2>
+    <form name="productgroupForm" novalidate>
+        <div class="panel panel-default">
+            <div class="panel-heading">Basic Details</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{ 'has-error' : productgroupForm.productgroupForm_ProductGroupName.$touched && productgroupForm.productgroupForm_ProductGroupName.$invalid }">
+                            <label class="required" for="productgroupForm_ProductGroupName">Product Group Name</label>
+                            <input type="text" class="form-control" id="productgroupForm_ProductGroupName" name="productgroupForm_ProductGroupName" ng-model="productgroup.ProductGroupName" placeholder="Product Group Name" ng-pattern="/^[a-zA-Z\s]*$/" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{'has-error': productgroup.Company1 == ''}">
+                            <label class="required" for="productgroupForm_Company">Company Name</label>
+                            <select class="form-control selectpicker show-tick" data-live-search="true" multiple id="productgroupForm_Company" ng-model="productgroup.Company1" toggle-dropdown name="productgroupForm_Company" required>
+                                <option value="" disabled>Select</option>
+                                <option ng-repeat="company in companys" value="{{company.Code}}">{{company.CompanyName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="!productgroupForm.$valid">
+            <div class="col-md-4"></div>
+            <div class="text-center alert alert-info col-md-4 col-centered">
+                <strong>Must Fill all (*) fields.</strong>
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <button type="button" ng-click="reset()" id="productgroupForm_ResetBtn" class="btn btn-info" ng-hide="productgroup.Id=='0' || productgroup.Id == ''">Reset</button>
+            <button type="button" ng-disabled="!productgroupForm.$valid" ng-click="save()" id="productgroupForm_SaveBtn" class="btn btn-success">Save</button>
+            <button type="button" ng-click="clear()" id="productgroupForm_ClearBtn" class="btn btn-warning" ng-show="productgroup.Id =='' || productgroup.Id =='0'">Clear</button>
+        </div>
+    </form>
+
+</div>
